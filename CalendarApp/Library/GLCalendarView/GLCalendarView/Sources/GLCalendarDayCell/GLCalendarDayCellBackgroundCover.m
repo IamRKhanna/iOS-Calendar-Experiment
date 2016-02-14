@@ -129,7 +129,16 @@
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     if (!self.inEdit && !self.continuousRangeDisplay) {
-        CGRect rect = CGRectMake(borderWidth + paddingLeft, borderWidth + paddingTop, width - borderWidth * 2 - paddingLeft - paddingRight,  height - borderWidth * 2 - paddingTop * 2);
+        // Let's keep it a perfect circle
+        if (width != height) {
+            paddingLeft += ABS(height - width)/2;
+            paddingRight += ABS(height - width)/2;
+        }
+        
+        // Original code commented below. Making changes to multipliers for desired shape effects
+        // CGRect rect = CGRectMake(borderWidth + paddingLeft, borderWidth + paddingTop, width - borderWidth * 2 - paddingLeft - paddingRight,  height - borderWidth * 2 - paddingTop * 2);
+        
+        CGRect rect = CGRectMake(borderWidth * 2 + paddingLeft, borderWidth + paddingTop, width - borderWidth * 4 - paddingLeft - paddingRight,  height - borderWidth * 2 - paddingTop * 2);
         if (self.backgroundImage) {
             [self.backgroundImage drawInRect:rect];
             return;
@@ -185,8 +194,17 @@
     
     CGFloat height = rect.size.height;
     CGFloat width = rect.size.width;
-            
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(borderWidth + paddingLeft, borderWidth + paddingTop, width - borderWidth * 2 - paddingLeft - paddingRight,  height - borderWidth * 2 - paddingTop * 2)];
+    
+    // Let's keep it a perfect circle
+    if (width != height) {
+        paddingLeft += ABS(height - width)/2;
+        paddingRight += ABS(height - width)/2;
+    }
+    
+    // Original code commented below. Making changes to multipliers for desired shape effects
+    // UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(borderWidth + paddingLeft, borderWidth + paddingTop, width - borderWidth * 2 - paddingLeft - paddingRight,  height - borderWidth * 2 - paddingTop * 2)];
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(borderWidth * 2 + paddingLeft, borderWidth + paddingTop, width - borderWidth * 4 - paddingLeft - paddingRight,  height - borderWidth * 2 - paddingTop * 2)];
     [path closePath];
     [self.fillColor setFill];
     [path fill];
