@@ -112,8 +112,9 @@
         
     // day label and month label
     if ([self isToday]) {
-        self.monthLabel.textColor = [UIColor whiteColor];
-        [self setMonthLabelText:@"Today"];
+        // Uncomment below code if you want to see the Today label on top of today cell like month start cell
+//        self.monthLabel.textColor = [UIColor whiteColor];
+//        [self setMonthLabelText:@"Today"];
         self.dayLabel.textColor = [UIColor whiteColor];
         [self setTodayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = YES;
