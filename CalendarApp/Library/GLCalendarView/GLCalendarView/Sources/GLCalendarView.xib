@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jy8-ul-cKo">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jy8-ul-cKo">
                     <rect key="frame" x="0.0" y="28" width="320" height="540"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2aE-Be-GHU">
@@ -41,10 +41,10 @@
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="64" maxX="0.0" maxY="-64"/>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="gl-calendar-shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="pi1-Sv-lrh">
-                    <rect key="frame" x="0.0" y="28" width="320" height="7"/>
+                    <rect key="frame" x="0.0" y="28" width="320" height="3"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="7" id="IY7-oL-gsS"/>
+                        <constraint firstAttribute="height" constant="3" id="IY7-oL-gsS"/>
                     </constraints>
                 </imageView>
                 <view hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o6e-VN-d86" userLabel="magnify glass">
