@@ -31,7 +31,7 @@
 
 // Agenda Table View
 @property (nonatomic, weak) IBOutlet UITableView *agendaTableView;
-@property (nonatomic, weak) RKAgendaTableViewCell *sizingCell;
+@property (nonatomic, strong) RKAgendaTableViewCell *sizingCell;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 
 // Calendar View
