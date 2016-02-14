@@ -28,7 +28,9 @@ extern NSString * const RKCalendarDataManagerDidUpdateEventsNotification;
 - (void)updateCalendarAccessPermissions;
 
 - (NSDate *)startDateForCalendarView;
+
 - (NSDate *)endDateForCalendarView;
 
+- (BOOL) doesEventExistForDate:(NSDate *)date;
 
 @end

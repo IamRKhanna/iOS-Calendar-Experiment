@@ -132,6 +132,7 @@
     [GLCalendarDayCell appearance].todayBackgroundColor = [UIColor colorFromHexString:@"#0073C6"];
     [GLCalendarDayCell appearance].monthLabelAttributes = @{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].yearLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:7], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
+    [GLCalendarDayCell appearance].agendaIndicatorColor = [UIColor colorFromHexString:@"#E6E6E6"];
 }
 
 
@@ -218,7 +219,7 @@
     NSDate *scrollDay = [RKCalendarDataHelper dateAtBeginningOfDayForDate:date];
     
     // Check if there are any events on given day
-    if ([self.calendarManager.sortedEventsDaysArray containsObject:scrollDay]) {
+    if ([self.calendarManager doesEventExistForDate:date]) {
         NSIndexPath *indexPathForSection = [NSIndexPath indexPathForRow:0
                                                               inSection:[self.calendarManager.sortedEventsDaysArray indexOfObject:scrollDay]];
         

@@ -12,6 +12,7 @@
 #import "GLDateUtils.h"
 #import "GLCalendarView.h"
 #import "GLCalendarDayCell.h"
+#import "RKCalendarDataManager.h"
 
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -30,6 +31,10 @@
 @property (nonatomic) ENLARGE_POINT enlargePoint;
 @property (nonatomic) BOOL inEdit;
 @property (nonatomic) CGFloat containerPadding;
+
+// Custom View to show whether the date has an agenda
+@property (weak, nonatomic) IBOutlet UIView *agendaIndicatorView;
+
 @end
 
 @implementation GLCalendarDayCell
@@ -63,6 +68,9 @@
     
     self.todayBackgroundColor = appearance.todayBackgroundColor ?: self.backgroundCover.strokeColor;
     self.containerPadding = [GLCalendarView appearance].padding;
+    
+    self.agendaIndicatorView.layer.cornerRadius = self.agendaIndicatorView.frame.size.width/2;
+    self.agendaIndicatorView.backgroundColor = appearance.agendaIndicatorColor ?: self.backgroundCover.strokeColor;
 }
 
 - (void)setDate:(NSDate *)date range:(GLCalendarDateRange *)range cellPosition:(CELL_POSITION)cellPosition enlargePoint:(ENLARGE_POINT)enlargePoint
@@ -126,6 +134,13 @@
         [self setTodayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = YES;
         self.backgroundCover.fillColor = self.todayBackgroundColor;
+        
+        self.agendaIndicatorView.backgroundColor = self.todayBackgroundColor;
+        if ([[RKCalendarDataManager sharedInstance] doesEventExistForDate:self.date]) {
+            self.agendaIndicatorView.hidden = NO;
+        } else {
+            self.agendaIndicatorView.hidden = YES;
+        }
     } else if (day == 1) {
         self.monthLabel.textColor = [UIColor redColor];
         [self setMonthLabelText:[self monthText:month]];
@@ -145,6 +160,9 @@
         self.dayLabel.textColor = [UIColor redColor];
         [self setDayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = NO;
+        self.agendaIndicatorView.backgroundColor = self.todayBackgroundColor;
+        
+        self.agendaIndicatorView.hidden = YES;
     } else {
         self.monthLabel.textColor = [UIColor blackColor];
         [self setMonthLabelText:@""];
@@ -153,6 +171,14 @@
         self.dayLabel.textColor = [UIColor blackColor];
         [self setDayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = NO;
+
+        self.agendaIndicatorView.backgroundColor = self.agendaIndicatorColor;
+        if ([[RKCalendarDataManager sharedInstance] doesEventExistForDate:self.date]) {
+            self.agendaIndicatorView.hidden = NO;
+        } else {
+            self.agendaIndicatorView.hidden = YES;
+        }
+        
     }
     
     if ([self isFuture]) {

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -50,6 +51,14 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujh-fp-hDn" userLabel="agenda indicator view">
+                        <rect key="frame" x="25" y="48" width="4" height="4"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Ujh-fp-hDn" secondAttribute="height" multiplier="1:1" id="EMK-fh-Jti"/>
+                            <constraint firstAttribute="width" constant="4" id="fyG-Xx-0Mv"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -58,6 +67,8 @@
                 <constraint firstAttribute="bottom" secondItem="gkN-HJ-qIp" secondAttribute="bottom" constant="2" id="5O2-CH-P4O"/>
                 <constraint firstAttribute="centerY" secondItem="Qzu-El-Gfs" secondAttribute="centerY" id="JcK-sM-fVt"/>
                 <constraint firstAttribute="centerX" secondItem="Qzu-El-Gfs" secondAttribute="centerX" id="TI3-mt-0qb"/>
+                <constraint firstItem="Ujh-fp-hDn" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="U1d-1r-Oyc"/>
+                <constraint firstAttribute="bottom" secondItem="Ujh-fp-hDn" secondAttribute="bottom" constant="4" id="d3U-50-GlX"/>
                 <constraint firstItem="gkN-HJ-qIp" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="fvn-Dg-HSo"/>
                 <constraint firstItem="0ih-2e-aSb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="m5X-LC-15j"/>
                 <constraint firstItem="HQX-TK-Jgx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oev-3c-MKK"/>
@@ -68,6 +79,7 @@
             </constraints>
             <size key="customSize" width="54" height="56"/>
             <connections>
+                <outlet property="agendaIndicatorView" destination="Ujh-fp-hDn" id="Ahl-oZ-0AL"/>
                 <outlet property="backgroundCover" destination="HQX-TK-Jgx" id="CwL-Wf-smS"/>
                 <outlet property="backgroundCoverLeft" destination="puQ-V0-Nr0" id="Rvd-Gt-Lmr"/>
                 <outlet property="backgroundCoverRight" destination="qa7-L7-lry" id="GTD-Ob-t3h"/>

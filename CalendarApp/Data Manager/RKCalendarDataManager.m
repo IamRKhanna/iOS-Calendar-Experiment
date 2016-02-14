@@ -174,6 +174,15 @@ static  RKCalendarDataManager *sharedInstance = nil;
     }];
 }
 
+#pragma mark - Event Information Helper Methods
+- (BOOL) doesEventExistForDate:(NSDate *)date {
+    // Find weekday info without timestamp
+    NSDate *beggingDate = [RKCalendarDataHelper dateAtBeginningOfDayForDate:date];
+
+    return [self.sortedEventsDaysArray containsObject:beggingDate];
+}
+
+
 #pragma mark - Dealloc
 - (void)dealloc {
     
