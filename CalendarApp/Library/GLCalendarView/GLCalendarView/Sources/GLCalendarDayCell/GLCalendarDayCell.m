@@ -20,6 +20,8 @@
 @interface GLCalendarDayCell()
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yearLabel;
+
 @property (weak, nonatomic) IBOutlet GLCalendarDayCellBackgroundCover *backgroundCover;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundCoverLeft;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundCoverRight;
@@ -46,6 +48,7 @@
     self.dayLabelAttributes = appearance.dayLabelAttributes ?: @{NSFontAttributeName:[UIFont systemFontOfSize:20]};
     self.futureDayLabelAttributes = appearance.futureDayLabelAttributes ?: self.dayLabelAttributes;
     self.monthLabelAttributes = appearance.monthLabelAttributes ?: @{NSFontAttributeName:[UIFont systemFontOfSize:8]};
+    self.yearLabelAttributes = appearance.yearLabelAttributes ?: @{NSFontAttributeName:[UIFont systemFontOfSize:8]};
     self.todayLabelAttributes = appearance.todayLabelAttributes ?: @{NSFontAttributeName:[UIFont boldSystemFontOfSize:22]};
     
     self.backgroundCover.paddingTop = appearance.editCoverPadding ?: 2;
@@ -80,8 +83,8 @@
 {
 //    NSLog(@"update ui: %@ %d", [GLDateUtils descriptionForDate:self.date], _enlargePoint);
 
-    NSDateComponents *components = [[GLDateUtils calendar] components:NSCalendarUnitDay|NSCalendarUnitMonth fromDate:self.date];
-    
+    NSDateComponents *components = [[GLDateUtils calendar] components:NSCalendarUnitYear|NSCalendarUnitDay|NSCalendarUnitMonth fromDate:self.date];
+    NSInteger year = components.year;
     NSInteger day = components.day;
     NSInteger month = components.month;
 
@@ -115,6 +118,10 @@
         // Uncomment below code if you want to see the Today label on top of today cell like month start cell
 //        self.monthLabel.textColor = [UIColor whiteColor];
 //        [self setMonthLabelText:@"Today"];
+        self.monthLabel.textColor = [UIColor blackColor];
+        [self setMonthLabelText:@""];
+        self.yearLabel.textColor = [UIColor blackColor];
+        [self setYearLabelText:@""];
         self.dayLabel.textColor = [UIColor whiteColor];
         [self setTodayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = YES;
@@ -122,12 +129,27 @@
     } else if (day == 1) {
         self.monthLabel.textColor = [UIColor redColor];
         [self setMonthLabelText:[self monthText:month]];
+        
+        // Check if year is not current year
+        NSDateComponents *components = [[GLDateUtils calendar] components:NSCalendarUnitYear fromDate:[NSDate date]];
+        NSInteger thisYear = components.year;
+        if(year != thisYear) {
+            self.yearLabel.textColor = [UIColor blackColor];
+            [self setYearLabelText:[NSString stringWithFormat:@"%ld", (long)year]];
+        }
+        else {
+            self.yearLabel.textColor = [UIColor blackColor];
+            [self setYearLabelText:@""];
+        }
+        
         self.dayLabel.textColor = [UIColor redColor];
         [self setDayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = NO;
     } else {
         self.monthLabel.textColor = [UIColor blackColor];
         [self setMonthLabelText:@""];
+        self.yearLabel.textColor = [UIColor blackColor];
+        [self setYearLabelText:@""];
         self.dayLabel.textColor = [UIColor blackColor];
         [self setDayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = NO;
@@ -200,6 +222,11 @@
 - (void)setMonthLabelText:(NSString *)text
 {
     self.monthLabel.attributedText = [[NSAttributedString alloc] initWithString:text attributes:self.monthLabelAttributes];
+}
+
+- (void)setYearLabelText:(NSString *)text
+{
+    self.yearLabel.attributedText = [[NSAttributedString alloc] initWithString:text attributes:self.yearLabelAttributes];
 }
 
 

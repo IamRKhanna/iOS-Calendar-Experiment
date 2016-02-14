@@ -29,11 +29,22 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ih-2e-aSb" userLabel="month label">
-                        <rect key="frame" x="7" y="2" width="40" height="20"/>
+                        <rect key="frame" x="7" y="2" width="40" height="15"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="oig-83-yX8"/>
+                            <constraint firstAttribute="height" constant="15" id="oig-83-yX8"/>
                             <constraint firstAttribute="width" constant="40" id="tUx-Fs-r8t"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkN-HJ-qIp" userLabel="year label">
+                        <rect key="frame" x="7" y="39" width="40" height="15"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="cDz-bd-u4V"/>
+                            <constraint firstAttribute="width" constant="40" id="hsi-TP-6hY"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -44,8 +55,10 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="gkN-HJ-qIp" secondAttribute="bottom" constant="2" id="5O2-CH-P4O"/>
                 <constraint firstAttribute="centerY" secondItem="Qzu-El-Gfs" secondAttribute="centerY" id="JcK-sM-fVt"/>
                 <constraint firstAttribute="centerX" secondItem="Qzu-El-Gfs" secondAttribute="centerX" id="TI3-mt-0qb"/>
+                <constraint firstItem="gkN-HJ-qIp" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="fvn-Dg-HSo"/>
                 <constraint firstItem="0ih-2e-aSb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="m5X-LC-15j"/>
                 <constraint firstItem="HQX-TK-Jgx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oev-3c-MKK"/>
                 <constraint firstAttribute="bottom" secondItem="HQX-TK-Jgx" secondAttribute="bottom" id="otX-B0-VxV"/>
@@ -60,8 +73,9 @@
                 <outlet property="backgroundCoverRight" destination="qa7-L7-lry" id="GTD-Ob-t3h"/>
                 <outlet property="dayLabel" destination="Qzu-El-Gfs" id="U7r-Ur-qvJ"/>
                 <outlet property="monthLabel" destination="0ih-2e-aSb" id="7zG-BM-ome"/>
+                <outlet property="yearLabel" destination="gkN-HJ-qIp" id="rH0-Y0-tTw"/>
             </connections>
-            <point key="canvasLocation" x="-35" y="107"/>
+            <point key="canvasLocation" x="-492" y="104"/>
         </collectionViewCell>
     </objects>
 </document>
