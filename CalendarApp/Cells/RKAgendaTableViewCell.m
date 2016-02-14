@@ -21,6 +21,7 @@
 
 @implementation RKAgendaTableViewCell
 #pragma mark - Initialization
+
 - (instancetype)init {
     self = [super init];
     
@@ -40,9 +41,6 @@
         }
         
         self = [arrayOfViews objectAtIndex:0];
-        
-        // Custom initialization
-        [self basicInitialization];
     }
     
     return self;
@@ -71,28 +69,6 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    
-    if (self) {
-        // Custom initialization
-        [self basicInitialization];
-    }
-    
-    return self;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    // Initialization code
-    [self basicInitialization];
-}
-
-- (void) basicInitialization {
-    
-}
-
 #pragma mark - Identifier
 + (NSString *)reuseIdentifier {
     return NSStringFromClass([RKAgendaTableViewCell class]);
@@ -101,10 +77,13 @@
 #pragma mark - Accessor Methods
 - (void)setEvent:(EKEvent *)event {
     _event = event;
+    
+    // Configure Display info
     [self configureDisplayInfo];
 }
 
 #pragma mark - Configurator
+
 - (void)configureDisplayInfo {
     if (self.event) {
         // Configure time display
@@ -129,6 +108,7 @@
 }
 
 - (void)configureEventInfoDisplay {
+    // Set event title and location
     self.eventTitleLabel.text = self.event.title;
     self.eventLocationLabel.text = self.event.location;
 }

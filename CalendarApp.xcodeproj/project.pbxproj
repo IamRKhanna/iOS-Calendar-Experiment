@@ -114,7 +114,6 @@
 		CE1F448C1C70FBB90047511D /* CalendarApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE1F44A41C70FC620047511D /* Agenda View */,
 				CE1F44A51C70FC620047511D /* Category */,
 				CE1F44AA1C70FC620047511D /* Cells */,
 				CE1F44AE1C70FC620047511D /* Data Manager */,
@@ -138,13 +137,6 @@
 				CE1F448E1C70FBB90047511D /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CE1F44A41C70FC620047511D /* Agenda View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Agenda View";
 			sourceTree = "<group>";
 		};
 		CE1F44A51C70FC620047511D /* Category */ = {
@@ -508,6 +500,7 @@
 				CE1F44A31C70FBB90047511D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

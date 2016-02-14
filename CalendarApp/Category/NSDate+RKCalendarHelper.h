@@ -12,7 +12,7 @@
 
 - (NSString *)amPmTimeStampString;      // 1y 3m 2d 2h
 
-- (NSString *)weekdayMonthDayString;    // WEDNESDAY, 12 DECEMBER
+- (NSString *)weekdayMonthDayString;    // Wednesday, 12 December
 
 - (BOOL)isToday;
 
@@ -21,4 +21,5 @@
 - (BOOL)isTomorrow;
 
 - (NSDate *)dateByAddingDays:(NSInteger)addedDays;
+
 @end

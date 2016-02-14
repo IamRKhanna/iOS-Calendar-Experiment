@@ -12,8 +12,9 @@
 
 @interface RKAgendaTableViewCell : UITableViewCell
 
-+ (NSString *)reuseIdentifier;
-
 @property (nonatomic, strong) EKEvent *event;
+
+
++ (NSString *)reuseIdentifier;
 
 @end

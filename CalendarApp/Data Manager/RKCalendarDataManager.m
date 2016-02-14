@@ -130,8 +130,8 @@ static  RKCalendarDataManager *sharedInstance = nil;
     NSDate *today = [RKCalendarDataHelper dateAtBeginningOfDayForDate:[NSDate date]];
     
     // Let's figure out start and end dates
-    NSDate *startDate = [RKCalendarDataHelper dateByAddingYears:0 months:-3 toDate:today];
-    NSDate *endDate = [RKCalendarDataHelper dateByAddingYears:1 months:0 toDate:today];
+    NSDate *startDate = [RKCalendarDataHelper dateByAddingYears:0 months:RK_CALENDAR_AGENDA_DEFAULT_HISTORY_DURATION toDate:today];
+    NSDate *endDate = [RKCalendarDataHelper dateByAddingYears:0 months:RK_CALENDAR_AGENDA_DEFAULT_FUTURE_DURATION toDate:today];
     
     // Fetch the events from Event store
     NSPredicate *searchPredicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil];

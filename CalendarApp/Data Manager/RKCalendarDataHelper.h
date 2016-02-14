@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-
-#define RK_CALENDAR_ONE_DAY_DURATION            60*60*24
-#define RK_CALENDAR_DEFAULT_HISTORY_DURATION    3       // No of months
-#define RK_CALENDAR_DEFAULT_FUTURE_DURATION     12      // No of months
-#define RK_CALENDAR_DEFAULT_START_YEAR          2010    // Reference taken from Outlook iOS App
-#define RK_CALENDAR_DEFAULT_END_YEAR            2020
+#define RK_CALENDAR_AGENDA_DEFAULT_HISTORY_DURATION     -3       // No of months
+#define RK_CALENDAR_AGENDA_DEFAULT_FUTURE_DURATION      12      // No of months
+#define RK_CALENDAR_DEFAULT_START_YEAR                  2010    // Reference taken from Outlook iOS App
+#define RK_CALENDAR_DEFAULT_END_YEAR                    2020
 
 extern NSString * const RKCalendarAccessPermissionGrantedKey;
 
