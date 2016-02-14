@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RKAgendaTableViewSectionHeaderView">
+            <connections>
+                <outlet property="dateLabel" destination="l1g-AF-7uG" id="OPf-Tc-JmY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" id="iN0-l3-epB" customClass="RKAgendaTableViewSectionHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="75"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlJ-C2-5La">
+                    <rect key="frame" x="0.0" y="0.0" width="322" height="1"/>
+                    <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="5PD-WM-a5Y"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOMORROW • THURSDAY, FEBRUARY 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1g-AF-7uG">
+                    <rect key="frame" x="20" y="31" width="211.5" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4s-oe-WXl">
+                    <rect key="frame" x="0.0" y="74" width="322" height="1"/>
+                    <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="a0b-EG-MPl"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="lE4-Kb-Br7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="l1g-AF-7uG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="6Mb-CY-5ZO"/>
+                <constraint firstItem="qlJ-C2-5La" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BEk-3A-P7p"/>
+                <constraint firstAttribute="trailing" secondItem="qlJ-C2-5La" secondAttribute="trailing" id="hJ4-me-BDP"/>
+                <constraint firstAttribute="bottom" secondItem="E4s-oe-WXl" secondAttribute="bottom" id="iYR-b7-dH1"/>
+                <constraint firstItem="qlJ-C2-5La" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iZp-Vz-Kj2"/>
+                <constraint firstItem="E4s-oe-WXl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="p1E-4z-roh"/>
+                <constraint firstAttribute="trailing" secondItem="E4s-oe-WXl" secondAttribute="trailing" id="reZ-iV-LhZ"/>
+                <constraint firstItem="l1g-AF-7uG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="x0h-X3-5ma"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dateLabel" destination="l1g-AF-7uG" id="k5E-Af-Pia"/>
+            </connections>
+            <point key="canvasLocation" x="169" y="238.5"/>
+        </view>
+    </objects>
+</document>

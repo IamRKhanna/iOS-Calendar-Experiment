@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE1F448F1C70FBB90047511D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F448E1C70FBB90047511D /* main.m */; };
+		CE1F44981C70FBB90047511D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44961C70FBB90047511D /* Main.storyboard */; };
+		CE1F449A1C70FBB90047511D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44991C70FBB90047511D /* Assets.xcassets */; };
+		CE1F449D1C70FBB90047511D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1F449B1C70FBB90047511D /* LaunchScreen.storyboard */; };
+		CE1F44D51C70FC620047511D /* NSDate+RKCalendarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44A71C70FC620047511D /* NSDate+RKCalendarHelper.m */; };
+		CE1F44D61C70FC620047511D /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44A91C70FC620047511D /* UIColor+HexString.m */; };
+		CE1F44D71C70FC620047511D /* RKAgendaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44AC1C70FC620047511D /* RKAgendaTableViewCell.m */; };
+		CE1F44D81C70FC620047511D /* RKAgendaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44AD1C70FC620047511D /* RKAgendaTableViewCell.xib */; };
+		CE1F44D91C70FC620047511D /* RKCalendarDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44B01C70FC620047511D /* RKCalendarDataHelper.m */; };
+		CE1F44DA1C70FC620047511D /* RKCalendarDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44B21C70FC620047511D /* RKCalendarDataManager.m */; };
+		CE1F44DB1C70FC620047511D /* GLCalendarDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44B81C70FC620047511D /* GLCalendarDateRange.m */; };
+		CE1F44DC1C70FC620047511D /* GLCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44BB1C70FC620047511D /* GLCalendarDayCell.m */; };
+		CE1F44DD1C70FC620047511D /* GLCalendarDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44BC1C70FC620047511D /* GLCalendarDayCell.xib */; };
+		CE1F44DE1C70FC620047511D /* GLCalendarDayCellBackgroundCover.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44BE1C70FC620047511D /* GLCalendarDayCellBackgroundCover.m */; };
+		CE1F44DF1C70FC620047511D /* GLCalendarMonthCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44C01C70FC620047511D /* GLCalendarMonthCoverView.m */; };
+		CE1F44E01C70FC620047511D /* GLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44C21C70FC620047511D /* GLCalendarView.m */; };
+		CE1F44E11C70FC620047511D /* GLCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44C31C70FC620047511D /* GLCalendarView.xib */; };
+		CE1F44E21C70FC620047511D /* GLDateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44C51C70FC620047511D /* GLDateUtils.m */; };
+		CE1F44E31C70FC620047511D /* gl-calendar-magnify-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44C71C70FC620047511D /* gl-calendar-magnify-glass.png */; };
+		CE1F44E41C70FC620047511D /* gl-calendar-magnify-glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44C81C70FC620047511D /* gl-calendar-magnify-glass@2x.png */; };
+		CE1F44E51C70FC620047511D /* gl-calendar-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44C91C70FC620047511D /* gl-calendar-shadow.png */; };
+		CE1F44E61C70FC620047511D /* gl-calendar-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44CA1C70FC620047511D /* gl-calendar-shadow@2x.png */; };
+		CE1F44E71C70FC620047511D /* gl-calendar-shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44CB1C70FC620047511D /* gl-calendar-shadow@3x.png */; };
+		CE1F44E81C70FC620047511D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44CC1C70FC620047511D /* LICENSE */; };
+		CE1F44EA1C70FC620047511D /* RKCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44D01C70FC620047511D /* RKCalendarViewController.m */; };
+		CE1F44EB1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44D31C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m */; };
+		CE1F44EC1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44D41C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib */; };
+		CE1F44EF1C70FC700047511D /* RKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44EE1C70FC700047511D /* RKAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CE1F448A1C70FBB90047511D /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1F448E1C70FBB90047511D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CE1F44971C70FBB90047511D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE1F44991C70FBB90047511D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE1F449C1C70FBB90047511D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE1F449E1C70FBB90047511D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE1F44A61C70FC620047511D /* NSDate+RKCalendarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RKCalendarHelper.h"; sourceTree = "<group>"; };
+		CE1F44A71C70FC620047511D /* NSDate+RKCalendarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RKCalendarHelper.m"; sourceTree = "<group>"; };
+		CE1F44A81C70FC620047511D /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		CE1F44A91C70FC620047511D /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
+		CE1F44AB1C70FC620047511D /* RKAgendaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKAgendaTableViewCell.h; sourceTree = "<group>"; };
+		CE1F44AC1C70FC620047511D /* RKAgendaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKAgendaTableViewCell.m; sourceTree = "<group>"; };
+		CE1F44AD1C70FC620047511D /* RKAgendaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKAgendaTableViewCell.xib; sourceTree = "<group>"; };
+		CE1F44AF1C70FC620047511D /* RKCalendarDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCalendarDataHelper.h; sourceTree = "<group>"; };
+		CE1F44B01C70FC620047511D /* RKCalendarDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCalendarDataHelper.m; sourceTree = "<group>"; };
+		CE1F44B11C70FC620047511D /* RKCalendarDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCalendarDataManager.h; sourceTree = "<group>"; };
+		CE1F44B21C70FC620047511D /* RKCalendarDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCalendarDataManager.m; sourceTree = "<group>"; };
+		CE1F44B71C70FC620047511D /* GLCalendarDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDateRange.h; sourceTree = "<group>"; };
+		CE1F44B81C70FC620047511D /* GLCalendarDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDateRange.m; sourceTree = "<group>"; };
+		CE1F44BA1C70FC620047511D /* GLCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDayCell.h; sourceTree = "<group>"; };
+		CE1F44BB1C70FC620047511D /* GLCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDayCell.m; sourceTree = "<group>"; };
+		CE1F44BC1C70FC620047511D /* GLCalendarDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLCalendarDayCell.xib; sourceTree = "<group>"; };
+		CE1F44BD1C70FC620047511D /* GLCalendarDayCellBackgroundCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDayCellBackgroundCover.h; sourceTree = "<group>"; };
+		CE1F44BE1C70FC620047511D /* GLCalendarDayCellBackgroundCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDayCellBackgroundCover.m; sourceTree = "<group>"; };
+		CE1F44BF1C70FC620047511D /* GLCalendarMonthCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarMonthCoverView.h; sourceTree = "<group>"; };
+		CE1F44C01C70FC620047511D /* GLCalendarMonthCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarMonthCoverView.m; sourceTree = "<group>"; };
+		CE1F44C11C70FC620047511D /* GLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarView.h; sourceTree = "<group>"; };
+		CE1F44C21C70FC620047511D /* GLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarView.m; sourceTree = "<group>"; };
+		CE1F44C31C70FC620047511D /* GLCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLCalendarView.xib; sourceTree = "<group>"; };
+		CE1F44C41C70FC620047511D /* GLDateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDateUtils.h; sourceTree = "<group>"; };
+		CE1F44C51C70FC620047511D /* GLDateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDateUtils.m; sourceTree = "<group>"; };
+		CE1F44C71C70FC620047511D /* gl-calendar-magnify-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-magnify-glass.png"; sourceTree = "<group>"; };
+		CE1F44C81C70FC620047511D /* gl-calendar-magnify-glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-magnify-glass@2x.png"; sourceTree = "<group>"; };
+		CE1F44C91C70FC620047511D /* gl-calendar-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow.png"; sourceTree = "<group>"; };
+		CE1F44CA1C70FC620047511D /* gl-calendar-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@2x.png"; sourceTree = "<group>"; };
+		CE1F44CB1C70FC620047511D /* gl-calendar-shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@3x.png"; sourceTree = "<group>"; };
+		CE1F44CC1C70FC620047511D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CE1F44CF1C70FC620047511D /* RKCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCalendarViewController.h; sourceTree = "<group>"; };
+		CE1F44D01C70FC620047511D /* RKCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCalendarViewController.m; sourceTree = "<group>"; };
+		CE1F44D21C70FC620047511D /* RKAgendaTableViewSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKAgendaTableViewSectionHeaderView.h; sourceTree = "<group>"; };
+		CE1F44D31C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKAgendaTableViewSectionHeaderView.m; sourceTree = "<group>"; };
+		CE1F44D41C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKAgendaTableViewSectionHeaderView.xib; sourceTree = "<group>"; };
+		CE1F44ED1C70FC700047511D /* RKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKAppDelegate.h; sourceTree = "<group>"; };
+		CE1F44EE1C70FC700047511D /* RKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE1F44871C70FBB90047511D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE1F44811C70FBB90047511D = {
+			isa = PBXGroup;
+			children = (
+				CE1F448C1C70FBB90047511D /* CalendarApp */,
+				CE1F448B1C70FBB90047511D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CE1F448B1C70FBB90047511D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F448A1C70FBB90047511D /* CalendarApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE1F448C1C70FBB90047511D /* CalendarApp */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44A41C70FC620047511D /* Agenda View */,
+				CE1F44A51C70FC620047511D /* Category */,
+				CE1F44AA1C70FC620047511D /* Cells */,
+				CE1F44AE1C70FC620047511D /* Data Manager */,
+				CE1F44B31C70FC620047511D /* Library */,
+				CE1F44CE1C70FC620047511D /* View Controllers */,
+				CE1F44D11C70FC620047511D /* Views */,
+				CE1F44ED1C70FC700047511D /* RKAppDelegate.h */,
+				CE1F44EE1C70FC700047511D /* RKAppDelegate.m */,
+				CE1F44961C70FBB90047511D /* Main.storyboard */,
+				CE1F44991C70FBB90047511D /* Assets.xcassets */,
+				CE1F449B1C70FBB90047511D /* LaunchScreen.storyboard */,
+				CE1F449E1C70FBB90047511D /* Info.plist */,
+				CE1F448D1C70FBB90047511D /* Supporting Files */,
+			);
+			path = CalendarApp;
+			sourceTree = "<group>";
+		};
+		CE1F448D1C70FBB90047511D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F448E1C70FBB90047511D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE1F44A41C70FC620047511D /* Agenda View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Agenda View";
+			sourceTree = "<group>";
+		};
+		CE1F44A51C70FC620047511D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44A61C70FC620047511D /* NSDate+RKCalendarHelper.h */,
+				CE1F44A71C70FC620047511D /* NSDate+RKCalendarHelper.m */,
+				CE1F44A81C70FC620047511D /* UIColor+HexString.h */,
+				CE1F44A91C70FC620047511D /* UIColor+HexString.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		CE1F44AA1C70FC620047511D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44AB1C70FC620047511D /* RKAgendaTableViewCell.h */,
+				CE1F44AC1C70FC620047511D /* RKAgendaTableViewCell.m */,
+				CE1F44AD1C70FC620047511D /* RKAgendaTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CE1F44AE1C70FC620047511D /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44AF1C70FC620047511D /* RKCalendarDataHelper.h */,
+				CE1F44B01C70FC620047511D /* RKCalendarDataHelper.m */,
+				CE1F44B11C70FC620047511D /* RKCalendarDataManager.h */,
+				CE1F44B21C70FC620047511D /* RKCalendarDataManager.m */,
+			);
+			path = "Data Manager";
+			sourceTree = "<group>";
+		};
+		CE1F44B31C70FC620047511D /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44B41C70FC620047511D /* GLCalendarView */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		CE1F44B41C70FC620047511D /* GLCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44B51C70FC620047511D /* GLCalendarView */,
+				CE1F44CC1C70FC620047511D /* LICENSE */,
+			);
+			path = GLCalendarView;
+			sourceTree = "<group>";
+		};
+		CE1F44B51C70FC620047511D /* GLCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44B61C70FC620047511D /* Sources */,
+			);
+			path = GLCalendarView;
+			sourceTree = "<group>";
+		};
+		CE1F44B61C70FC620047511D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44B71C70FC620047511D /* GLCalendarDateRange.h */,
+				CE1F44B81C70FC620047511D /* GLCalendarDateRange.m */,
+				CE1F44B91C70FC620047511D /* GLCalendarDayCell */,
+				CE1F44BF1C70FC620047511D /* GLCalendarMonthCoverView.h */,
+				CE1F44C01C70FC620047511D /* GLCalendarMonthCoverView.m */,
+				CE1F44C11C70FC620047511D /* GLCalendarView.h */,
+				CE1F44C21C70FC620047511D /* GLCalendarView.m */,
+				CE1F44C31C70FC620047511D /* GLCalendarView.xib */,
+				CE1F44C41C70FC620047511D /* GLDateUtils.h */,
+				CE1F44C51C70FC620047511D /* GLDateUtils.m */,
+				CE1F44C61C70FC620047511D /* Images */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		CE1F44B91C70FC620047511D /* GLCalendarDayCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44BA1C70FC620047511D /* GLCalendarDayCell.h */,
+				CE1F44BB1C70FC620047511D /* GLCalendarDayCell.m */,
+				CE1F44BC1C70FC620047511D /* GLCalendarDayCell.xib */,
+				CE1F44BD1C70FC620047511D /* GLCalendarDayCellBackgroundCover.h */,
+				CE1F44BE1C70FC620047511D /* GLCalendarDayCellBackgroundCover.m */,
+			);
+			path = GLCalendarDayCell;
+			sourceTree = "<group>";
+		};
+		CE1F44C61C70FC620047511D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44C71C70FC620047511D /* gl-calendar-magnify-glass.png */,
+				CE1F44C81C70FC620047511D /* gl-calendar-magnify-glass@2x.png */,
+				CE1F44C91C70FC620047511D /* gl-calendar-shadow.png */,
+				CE1F44CA1C70FC620047511D /* gl-calendar-shadow@2x.png */,
+				CE1F44CB1C70FC620047511D /* gl-calendar-shadow@3x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		CE1F44CE1C70FC620047511D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44CF1C70FC620047511D /* RKCalendarViewController.h */,
+				CE1F44D01C70FC620047511D /* RKCalendarViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		CE1F44D11C70FC620047511D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE1F44D21C70FC620047511D /* RKAgendaTableViewSectionHeaderView.h */,
+				CE1F44D31C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m */,
+				CE1F44D41C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE1F44891C70FBB90047511D /* CalendarApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE1F44A11C70FBB90047511D /* Build configuration list for PBXNativeTarget "CalendarApp" */;
+			buildPhases = (
+				CE1F44861C70FBB90047511D /* Sources */,
+				CE1F44871C70FBB90047511D /* Frameworks */,
+				CE1F44881C70FBB90047511D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalendarApp;
+			productName = CalendarApp;
+			productReference = CE1F448A1C70FBB90047511D /* CalendarApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE1F44821C70FBB90047511D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Rahul Khanna";
+				TargetAttributes = {
+					CE1F44891C70FBB90047511D = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = CE1F44851C70FBB90047511D /* Build configuration list for PBXProject "CalendarApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE1F44811C70FBB90047511D;
+			productRefGroup = CE1F448B1C70FBB90047511D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE1F44891C70FBB90047511D /* CalendarApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE1F44881C70FBB90047511D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1F449D1C70FBB90047511D /* LaunchScreen.storyboard in Resources */,
+				CE1F449A1C70FBB90047511D /* Assets.xcassets in Resources */,
+				CE1F44D81C70FC620047511D /* RKAgendaTableViewCell.xib in Resources */,
+				CE1F44E11C70FC620047511D /* GLCalendarView.xib in Resources */,
+				CE1F44EC1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib in Resources */,
+				CE1F44E71C70FC620047511D /* gl-calendar-shadow@3x.png in Resources */,
+				CE1F44E41C70FC620047511D /* gl-calendar-magnify-glass@2x.png in Resources */,
+				CE1F44E81C70FC620047511D /* LICENSE in Resources */,
+				CE1F44E31C70FC620047511D /* gl-calendar-magnify-glass.png in Resources */,
+				CE1F44E51C70FC620047511D /* gl-calendar-shadow.png in Resources */,
+				CE1F44E61C70FC620047511D /* gl-calendar-shadow@2x.png in Resources */,
+				CE1F44DD1C70FC620047511D /* GLCalendarDayCell.xib in Resources */,
+				CE1F44981C70FBB90047511D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE1F44861C70FBB90047511D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1F44D71C70FC620047511D /* RKAgendaTableViewCell.m in Sources */,
+				CE1F44D61C70FC620047511D /* UIColor+HexString.m in Sources */,
+				CE1F44EB1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m in Sources */,
+				CE1F44DB1C70FC620047511D /* GLCalendarDateRange.m in Sources */,
+				CE1F44D51C70FC620047511D /* NSDate+RKCalendarHelper.m in Sources */,
+				CE1F44D91C70FC620047511D /* RKCalendarDataHelper.m in Sources */,
+				CE1F44E21C70FC620047511D /* GLDateUtils.m in Sources */,
+				CE1F44E01C70FC620047511D /* GLCalendarView.m in Sources */,
+				CE1F44DF1C70FC620047511D /* GLCalendarMonthCoverView.m in Sources */,
+				CE1F44DC1C70FC620047511D /* GLCalendarDayCell.m in Sources */,
+				CE1F44EA1C70FC620047511D /* RKCalendarViewController.m in Sources */,
+				CE1F44DE1C70FC620047511D /* GLCalendarDayCellBackgroundCover.m in Sources */,
+				CE1F44DA1C70FC620047511D /* RKCalendarDataManager.m in Sources */,
+				CE1F448F1C70FBB90047511D /* main.m in Sources */,
+				CE1F44EF1C70FC700047511D /* RKAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CE1F44961C70FBB90047511D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE1F44971C70FBB90047511D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CE1F449B1C70FBB90047511D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE1F449C1C70FBB90047511D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CE1F449F1C70FBB90047511D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CE1F44A01C70FBB90047511D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE1F44A21C70FBB90047511D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CalendarApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.indie..CalendarApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CE1F44A31C70FBB90047511D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CalendarApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.indie..CalendarApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE1F44851C70FBB90047511D /* Build configuration list for PBXProject "CalendarApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE1F449F1C70FBB90047511D /* Debug */,
+				CE1F44A01C70FBB90047511D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE1F44A11C70FBB90047511D /* Build configuration list for PBXNativeTarget "CalendarApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE1F44A21C70FBB90047511D /* Debug */,
+				CE1F44A31C70FBB90047511D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CE1F44821C70FBB90047511D /* Project object */;
+}
