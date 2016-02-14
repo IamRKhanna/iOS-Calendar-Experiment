@@ -200,6 +200,11 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
     return _lastDate;
 }
 
+-(void)setScrollDecelartionRate:(CGFloat)scrollDecelartionRate {
+    _scrollDecelartionRate = scrollDecelartionRate;
+    self.collectionView.decelerationRate = _scrollDecelartionRate;
+}
+
 # pragma mark - UICollectionView data source
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

@@ -121,6 +121,7 @@
 - (void)setupCalendarView {
     self.calendarView.firstDate = [self.calendarManager startDateForCalendarView];
     self.calendarView.lastDate = [self.calendarManager endDateForCalendarView];
+    self.calendarView.scrollDecelartionRate = UIScrollViewDecelerationRateNormal;
     
     [GLCalendarView appearance].rowHeight = 45;
     
