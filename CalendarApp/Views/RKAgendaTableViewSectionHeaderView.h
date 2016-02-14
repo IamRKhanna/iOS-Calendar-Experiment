@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) NSDate *sectionDate;
 
-@property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 
 @end

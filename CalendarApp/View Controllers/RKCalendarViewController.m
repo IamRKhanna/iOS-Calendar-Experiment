@@ -27,15 +27,15 @@
 @property (nonatomic, weak) RKCalendarDataManager *calendarManager;
 
 // Menu View
-@property (nonatomic, strong) IBOutlet UIView *menuView;
+@property (nonatomic, weak) IBOutlet UIView *menuView;
 
 // Agenda Table View
-@property (nonatomic, strong) IBOutlet UITableView *agendaTableView;
-@property (nonatomic, strong) RKAgendaTableViewCell *sizingCell;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet UITableView *agendaTableView;
+@property (nonatomic, weak) RKAgendaTableViewCell *sizingCell;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 
 // Calendar View
-@property (nonatomic, strong) IBOutlet GLCalendarView *calendarView;
+@property (nonatomic, weak) IBOutlet GLCalendarView *calendarView;
 
 
 @end

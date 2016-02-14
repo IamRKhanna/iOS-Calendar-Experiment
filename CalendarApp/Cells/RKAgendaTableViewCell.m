@@ -12,10 +12,10 @@
 
 @interface RKAgendaTableViewCell()
 
-@property (nonatomic, strong) IBOutlet UILabel *dayTimeLabel;
-@property (nonatomic, strong) IBOutlet UILabel *eventDurationLabel;
-@property (nonatomic, strong) IBOutlet UILabel *eventTitleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *eventLocationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *dayTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *eventDurationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *eventTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *eventLocationLabel;
 
 @end
 

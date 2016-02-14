@@ -13,8 +13,8 @@
 
 @interface RKAgendaTableViewSectionHeaderView()
 
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *topBorderViewHeightConstraint;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *bottomBorderViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topBorderViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bottomBorderViewHeightConstraint;
 @end
 
 
