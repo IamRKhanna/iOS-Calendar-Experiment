@@ -21,6 +21,9 @@
 - (void)calenderView:(GLCalendarView *)calendarView finishEditRange:(GLCalendarDateRange *)range continueEditing:(BOOL)continueEditing;
 - (BOOL)calenderView:(GLCalendarView *)calendarView canUpdateRange:(GLCalendarDateRange *)range toBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate;
 - (void)calenderView:(GLCalendarView *)calendarView didUpdateRange:(GLCalendarDateRange *)range toBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate;
+
+- (void)calenderViewWillBeginDragging:(GLCalendarView *)calendarView;
+
 @end
 
 
@@ -47,4 +50,6 @@
 - (void)forceFinishEdit;
 - (void)beginToEditRange:(GLCalendarDateRange *)range;
 - (void)scrollToDate:(NSDate *)date animated:(BOOL)animated;
+
+- (CGFloat)heightToDisplayNumberOfRows:(NSUInteger)numberOfRows;
 @end

@@ -86,9 +86,10 @@
                     </view>
                     <connections>
                         <outlet property="agendaTableView" destination="ELc-8U-iSS" id="sht-QA-gTr"/>
+                        <outlet property="agendaTableViewHeightConstraint" destination="8ge-AO-Igi" id="Fhq-ds-fsQ"/>
                         <outlet property="calendarView" destination="Zf8-Z9-dbO" id="RtC-kq-AdT"/>
                         <outlet property="menuMonthLabel" destination="WRi-na-o7P" id="ZOs-il-OtO"/>
-                        <outlet property="tableViewHeightConstraint" destination="8ge-AO-Igi" id="btO-WK-Iht"/>
+                        <outlet property="menuView" destination="gjV-1M-fYT" id="Bsh-t2-EJ6"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="NWH-3Z-ZEG"/>
                     </connections>
                 </viewController>

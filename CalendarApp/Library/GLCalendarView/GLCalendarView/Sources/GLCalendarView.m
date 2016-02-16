@@ -346,6 +346,10 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
     } completion:^(BOOL finished) {
         
     }];
+    
+    if ([self.delegate respondsToSelector:@selector(calenderViewWillBeginDragging:)]) {
+        [self.delegate calenderViewWillBeginDragging:self];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -539,14 +543,8 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
     [self scrollToDate:[NSDate date] animated:YES];
 }
 # pragma mark - helper
-
-static NSDate *today;
-- (NSDate *)today
-{
-    if (!today) {
-        today = [GLDateUtils cutDate:[NSDate date]];
-    }
-    return today;
+- (CGFloat)heightToDisplayNumberOfRows:(NSUInteger)numberOfRows {
+    return self.weekDayTitle.frame.size.height + (numberOfRows * self.rowHeight);
 }
 
 - (NSDate *)dateAtLocation:(CGPoint)location

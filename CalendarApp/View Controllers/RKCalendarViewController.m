@@ -11,6 +11,7 @@
 #import "RKCalendarDataHelper.h"
 #import "UIColor+HexString.h"
 #import "NSDate+RKCalendarHelper.h"
+#import "RKInterfaceConstants.h"
 
 // Calendar View File Imports
 #import "GLCalendarView.h"
@@ -45,12 +46,13 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 @property (nonatomic, assign) BOOL isAgendaScrolledByCalendarView;
 
 // Menu View
+@property (nonatomic, strong) IBOutlet UIView *menuView;
 @property (nonatomic, strong) IBOutlet UILabel *menuMonthLabel;
 
 // Agenda Table View
 @property (nonatomic, strong) IBOutlet UITableView *agendaTableView;
 @property (nonatomic, strong) RKAgendaTableViewCell *sizingCell;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *agendaTableViewHeightConstraint;
 @property (nonatomic, assign) RKAgendaTableViewScrollDirection agendTableViewScrollDirection;
 
 // Calendar View
@@ -79,11 +81,14 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self updateAgendaTableViewHeightWithExpansion:NO];
+    
     [self.calendarView reload];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     [self.calendarView scrollToDate:[NSDate date] animated:YES];
 }
 
@@ -155,7 +160,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     self.calendarView.ranges = [@[todayRange] mutableCopy];
     
     // Attributes for calendar view
-    [GLCalendarView appearance].rowHeight = 45.0f;
+    [GLCalendarView appearance].rowHeight = RK_CALENDAR_VIEW_ROW_HEIGHT;
     [GLCalendarView appearance].padding = 0.0f;
     [GLCalendarView appearance].weekdayTitleViewBackgroundColor = [UIColor whiteColor];
     
@@ -197,6 +202,18 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     
     // Update month label on top menu
     [self updateMonthLabelForMenuViewForDate:date];
+}
+
+- (void)calenderViewWillBeginDragging:(GLCalendarView *)calendarView {
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+         usingSpringWithDamping:1.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         [self updateAgendaTableViewHeightWithExpansion:NO];
+                     }
+                     completion:nil];
 }
 
 
@@ -311,6 +328,18 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     }
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+         usingSpringWithDamping:1.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         [self updateAgendaTableViewHeightWithExpansion:YES];
+                     }
+                     completion:nil];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([scrollView isKindOfClass:[self.agendaTableView class]] && !self.isAgendaScrolledByCalendarView) {
         CGFloat yVelocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
@@ -388,6 +417,17 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     
     // Scroll to selected date
     [self.calendarView scrollToDate:date animated:YES];
+}
+
+- (void)updateAgendaTableViewHeightWithExpansion:(BOOL)shouldExpandAgendaView {
+    NSUInteger numberOfRows = 4;
+    if (shouldExpandAgendaView) {
+        numberOfRows = 2;
+    }
+    // Set Table View height constraint
+    self.agendaTableViewHeightConstraint.constant = self.view.frame.size.height - (self.menuView.frame.origin.y + self.menuView.frame.size.height) - ([self.calendarView heightToDisplayNumberOfRows:numberOfRows]);
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
 }
 
 @end
