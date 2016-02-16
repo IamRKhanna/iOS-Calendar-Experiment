@@ -154,6 +154,7 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
     }
     [self.ranges removeAllObjects];
     [self.ranges addObject:range];
+    [self scrollToDate:range.beginDate animated:YES];
     [self reloadFromBeginDate:range.beginDate toDate:range.endDate];
     
     for(GLCalendarDateRange *range in existingRangesArray) {
@@ -186,7 +187,14 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
 - (void)scrollToDate:(NSDate *)date animated:(BOOL)animated;
 {
     NSInteger item = [GLDateUtils daysBetween:self.firstDate and:date];
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:animated];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:0];
+    
+    UICollectionViewLayoutAttributes *layoutAttributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    CGPoint currentContentOffset = self.collectionView.contentOffset;
+    
+    // Need to move the selected cell in the second row from the top as per design
+    CGFloat requiredOffset = (layoutAttributes.frame.origin.y - currentContentOffset.y) - self.rowHeight;
+    [self.collectionView setContentOffset:CGPointMake(currentContentOffset.x, currentContentOffset.y+requiredOffset) animated:animated];
 }
 
 # pragma mark - getter & setter
