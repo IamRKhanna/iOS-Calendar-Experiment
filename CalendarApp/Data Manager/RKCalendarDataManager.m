@@ -175,11 +175,25 @@ static  RKCalendarDataManager *sharedInstance = nil;
 }
 
 #pragma mark - Event Information Helper Methods
-- (BOOL) doesEventExistForDate:(NSDate *)date {
+- (BOOL)doesEventExistForDate:(NSDate *)date {
     // Find weekday info without timestamp
-    NSDate *beggingDate = [RKCalendarDataHelper dateAtBeginningOfDayForDate:date];
+    NSDate *beginDate = [RKCalendarDataHelper dateAtBeginningOfDayForDate:date];
 
-    return [self.sortedEventsDaysArray containsObject:beggingDate];
+    return [self.sortedEventsDaysArray containsObject:beginDate];
+}
+
+- (NSUInteger)indexForEventNearestToDate:(NSDate *)date {
+    // Find weekday info without timestamp
+    NSDate *beginDate = [RKCalendarDataHelper dateAtBeginningOfDayForDate:date];
+    
+    NSUInteger index = [self.sortedEventsDaysArray indexOfObject:beginDate
+                                inSortedRange:NSMakeRange(0, self.sortedEventsDaysArray.count-1)
+                                      options:NSBinarySearchingInsertionIndex
+                              usingComparator:^NSComparisonResult(id obj1, id obj2) {
+                                  return [obj1 compare:obj2];
+                              }];
+    
+    return index;
 }
 
 

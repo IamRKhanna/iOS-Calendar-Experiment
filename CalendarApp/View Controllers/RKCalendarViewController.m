@@ -125,11 +125,11 @@
     self.calendarView.scrollDecelartionRate = UIScrollViewDecelerationRateNormal;
     self.calendarView.delegate = self;
     
-    
-    
-    GLCalendarDateRange *todayRange = [self calendarRangeForToday];
+    // Create calendar range for today
+    GLCalendarDateRange *todayRange = [self calendarRangeForDate:[NSDate date]];
     self.calendarView.ranges = [@[todayRange] mutableCopy];
     
+    // Attributes for calendar view
     [GLCalendarView appearance].rowHeight = 45.0f;
     [GLCalendarView appearance].padding = 0.0f;
     
@@ -142,11 +142,11 @@
     [GLCalendarDayCell appearance].todayAgendaIndicatorColor = [UIColor blueColor];
 }
 
-- (GLCalendarDateRange *)calendarRangeForToday {
-    GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:[NSDate date] endDate:[NSDate date]];
+- (GLCalendarDateRange *)calendarRangeForDate:(NSDate *)date {
+    GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:date endDate:date];
     range.editable = NO;
     range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
-
+    
     return range;
 }
 
@@ -160,6 +160,8 @@
     GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:beginDate endDate:beginDate];
     range.editable = NO;
     range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
+
+    [self scrollAgendaTableViewToDate:beginDate];
     
     return range;
 }
@@ -242,24 +244,38 @@
     return 25.0f;
 }
 
-#pragma Utility Methods
+#pragma mark UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Get date for seletced section
+    NSDate *selectedAgendaDate = [self.calendarManager.sortedEventsDaysArray objectAtIndex:indexPath.section];
+    
+    // Scroll to selected section date in calendar view
+    [self scrollCalendarViewToDate:selectedAgendaDate];
+}
+
+#pragma mark Utility Methods
 - (void)scrollAgendaTableViewToDate:(NSDate *)date {
-    // Find weekday info without timestamp
-    NSDate *scrollDay = [RKCalendarDataHelper dateAtBeginningOfDayForDate:date];
     
     // Check if there are any events on given day
-    if ([self.calendarManager doesEventExistForDate:date]) {
-        NSIndexPath *indexPathForSection = [NSIndexPath indexPathForRow:0
-                                                              inSection:[self.calendarManager.sortedEventsDaysArray indexOfObject:scrollDay]];
-        
-        [self.agendaTableView scrollToRowAtIndexPath:indexPathForSection
-                                    atScrollPosition:UITableViewScrollPositionTop
-                                            animated:YES];
-    }
-    else {
-        // TODO: Find next event after this date
-        
-    }
+    NSUInteger index = [self.calendarManager indexForEventNearestToDate:date];
+    
+    NSIndexPath *indexPathForSection = [NSIndexPath indexPathForRow:0
+                                                          inSection:index];
+    
+    [self.agendaTableView scrollToRowAtIndexPath:indexPathForSection
+                                atScrollPosition:UITableViewScrollPositionTop
+                                        animated:YES];
+}
+
+- (void)scrollCalendarViewToDate:(NSDate *)date {
+    // Create a date range for this date and add set it to range for calendar view
+    GLCalendarDateRange *dateRange = [self calendarRangeForDate:date];
+    [self.calendarView addRange:dateRange];
+
+    // Scroll to selected date
+    [self.calendarView scrollToDate:date animated:YES];
 }
 
 @end

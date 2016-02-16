@@ -33,4 +33,6 @@ extern NSString * const RKCalendarDataManagerDidUpdateEventsNotification;
 
 - (BOOL) doesEventExistForDate:(NSDate *)date;
 
+- (NSUInteger)indexForEventNearestToDate:(NSDate *)date;
+
 @end
