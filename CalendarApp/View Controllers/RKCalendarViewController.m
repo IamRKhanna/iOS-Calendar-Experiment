@@ -20,6 +20,23 @@
 #import "RKAgendaTableViewCell.h"
 #import "RKAgendaTableViewSectionHeaderView.h"
 
+/**
+ *  Enum to determine the direction of Agenda View scrolling
+ */
+typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
+    /**
+     *  No Direction
+     */
+    RKAgendaTableViewScrollDirectionNone = 0,
+    /**
+     *  Direction upwards. When vertical velocity is less than 0
+     */
+    RKAgendaTableViewScrollDirectionUp,
+    /**
+     *  Direction downwards. When vertical velocity is greater than 0
+     */
+    RKAgendaTableViewScrollDirectionDown
+};
 
 @interface RKCalendarViewController() <UITableViewDataSource, UITableViewDelegate, GLCalendarViewDelegate>
 
@@ -33,6 +50,7 @@
 @property (nonatomic, weak) IBOutlet UITableView *agendaTableView;
 @property (nonatomic, strong) RKAgendaTableViewCell *sizingCell;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (nonatomic, assign) RKAgendaTableViewScrollDirection agendTableViewScrollDirection;
 
 // Calendar View
 @property (nonatomic, weak) IBOutlet GLCalendarView *calendarView;
@@ -254,6 +272,56 @@
     
     // Scroll to selected section date in calendar view
     [self scrollCalendarViewToDate:selectedAgendaDate];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([scrollView isKindOfClass:[self.agendaTableView class]]) {
+        CGFloat yVelocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
+
+        if (self.agendaTableView.contentOffset.y < 0) {
+            // Scroll view is bouncing. No need to check for direction
+            self.agendTableViewScrollDirection = RKAgendaTableViewScrollDirectionNone;
+        }
+        else {
+            if (yVelocity < 0) {
+                // Table view scrolling upwards
+                self.agendTableViewScrollDirection = RKAgendaTableViewScrollDirectionUp;
+            } else if (yVelocity > 0) {
+                // Table view scrolling downwards
+                self.agendTableViewScrollDirection = RKAgendaTableViewScrollDirectionDown;
+            }
+        }
+    }
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    // Safety Code: Ensure top event date is selected on calendar view if scrolled to top
+    if ([scrollView isKindOfClass:[self.agendaTableView class]]) {
+        [self scrollCalendarViewToDate:[self.calendarManager.sortedEventsDaysArray objectAtIndex:0]];
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // Safety Code: Ensure date selected on calendar view is the date for the header on top of visible content
+    if ([scrollView isKindOfClass:[self.agendaTableView class]]) {
+        UITableViewCell *cell = [[(UITableView *)scrollView visibleCells] objectAtIndex:0];
+        NSIndexPath *indexPath = [(UITableView *)scrollView indexPathForCell:cell];
+        [self scrollCalendarViewToDate:[self.calendarManager.sortedEventsDaysArray objectAtIndex:indexPath.section]];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    // Just so that calendar does not scroll to dates when scrolling upwards
+    if (self.agendTableViewScrollDirection == RKAgendaTableViewScrollDirectionDown) {
+        [self scrollCalendarViewToDate:[self.calendarManager.sortedEventsDaysArray objectAtIndex:section]];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section {
+    // Just so that calendar does not scroll to dates when scrolling downwards
+    if(self.agendTableViewScrollDirection == RKAgendaTableViewScrollDirectionUp) {
+         [self scrollCalendarViewToDate:[self.calendarManager.sortedEventsDaysArray objectAtIndex:section+1]];
+    }
 }
 
 #pragma mark Utility Methods
