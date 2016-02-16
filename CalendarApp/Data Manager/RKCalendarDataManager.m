@@ -182,7 +182,7 @@ static  RKCalendarDataManager *sharedInstance = nil;
     return [self.sortedEventsDaysArray containsObject:beginDate];
 }
 
-- (NSUInteger)indexForEventNearestToDate:(NSDate *)date {
+- (NSUInteger)sectionIndexForEventNearestToDate:(NSDate *)date {
     // Find weekday info without timestamp
     NSDate *beginDate = [RKCalendarDataHelper dateAtBeginningOfDayForDate:date];
     

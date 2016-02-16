@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -21,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="February 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRi-na-o7P">
-                                        <rect key="frame" x="241.5" y="13.5" width="117.5" height="21.5"/>
+                                        <rect key="frame" x="241" y="13" width="117.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -51,6 +52,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="re3-UG-D8d"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpH-iY-2Sm">
+                                <rect key="frame" x="531" y="521" width="39" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HpH-iY-2Sm" secondAttribute="height" multiplier="1:1" id="lPV-JS-fhV"/>
+                                    <constraint firstAttribute="width" constant="39" id="mhe-n6-6Bw"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" image="icon_arrow_blue"/>
+                                <connections>
+                                    <action selector="todayButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FfC-Km-lW9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -59,9 +72,11 @@
                             <constraint firstItem="gjV-1M-fYT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4b3-Ih-KFq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ELc-8U-iSS" secondAttribute="trailing" id="5bu-81-W6I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gjV-1M-fYT" secondAttribute="trailing" id="8xf-ng-ggn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HpH-iY-2Sm" secondAttribute="trailing" constant="10" id="E01-LX-Myu"/>
                             <constraint firstItem="ELc-8U-iSS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="FGI-14-Gc4"/>
                             <constraint firstAttribute="trailing" secondItem="gjV-1M-fYT" secondAttribute="trailing" id="QIK-FJ-bFk"/>
                             <constraint firstAttribute="trailing" secondItem="ELc-8U-iSS" secondAttribute="trailing" id="Ss1-ua-Ooe"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HpH-iY-2Sm" secondAttribute="bottom" constant="40" id="Uma-ud-UgZ"/>
                             <constraint firstAttribute="trailing" secondItem="Zf8-Z9-dbO" secondAttribute="trailing" id="ZhP-0H-Chj"/>
                             <constraint firstItem="ELc-8U-iSS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aWO-OC-c5p"/>
                             <constraint firstItem="Zf8-Z9-dbO" firstAttribute="top" secondItem="gjV-1M-fYT" secondAttribute="bottom" id="cFe-un-8cT"/>
@@ -90,6 +105,7 @@
                         <outlet property="calendarView" destination="Zf8-Z9-dbO" id="RtC-kq-AdT"/>
                         <outlet property="menuMonthLabel" destination="WRi-na-o7P" id="ZOs-il-OtO"/>
                         <outlet property="menuView" destination="gjV-1M-fYT" id="Bsh-t2-EJ6"/>
+                        <outlet property="todayButton" destination="HpH-iY-2Sm" id="FWd-Su-tX5"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="NWH-3Z-ZEG"/>
                     </connections>
                 </viewController>
@@ -98,4 +114,7 @@
             <point key="canvasLocation" x="284" y="347"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_arrow_blue" width="29" height="29"/>
+    </resources>
 </document>

@@ -21,6 +21,10 @@
 #import "RKAgendaTableViewCell.h"
 #import "RKAgendaTableViewSectionHeaderView.h"
 
+// Degrees to radians
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
+
 /**
  *  Enum to determine the direction of Agenda View scrolling
  */
@@ -59,6 +63,11 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 @property (nonatomic, strong) IBOutlet GLCalendarView *calendarView;
 
 
+// Today button
+@property (nonatomic, strong) IBOutlet UIButton *todayButton;
+
+- (IBAction)todayButtonPressed:(id)sender;
+
 @end
 
 @implementation RKCalendarViewController
@@ -75,6 +84,9 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     
     // Calendar view initialization
     [self setupCalendarView];
+    
+    // Today button initialization
+    [self setupTodayButton];
     
 }
 
@@ -338,10 +350,15 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
                          [self updateAgendaTableViewHeightWithExpansion:YES];
                      }
                      completion:nil];
+    
+    [self setTodayButtonHidden:NO animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([scrollView isKindOfClass:[self.agendaTableView class]] && !self.isAgendaScrolledByCalendarView) {
+        
+        [self updateTodayButtonDisplay];
+        
         CGFloat yVelocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
 
         if (self.agendaTableView.contentOffset.y < 0) {
@@ -394,10 +411,10 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 - (void)scrollAgendaTableViewToDate:(NSDate *)date {
     
     // Check if there are any events on given day
-    NSUInteger index = [self.calendarManager indexForEventNearestToDate:date];
+    NSUInteger sectionIndex = [self.calendarManager sectionIndexForEventNearestToDate:date];
     
     NSIndexPath *indexPathForSection = [NSIndexPath indexPathForRow:0
-                                                          inSection:index];
+                                                          inSection:sectionIndex];
 
     self.isAgendaScrolledByCalendarView = YES;
     self.agendTableViewScrollDirection = RKAgendaTableViewScrollDirectionNone;
@@ -430,4 +447,72 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [self.view layoutIfNeeded];
 }
 
+
+#pragma mark - TODAY BUTTON
+
+#pragma mark Setup Button
+
+- (void)setupTodayButton {
+    [self setTodayButtonHidden:YES animated:NO];
+}
+
+#pragma mark Update Button Display
+-(void)updateTodayButtonDisplay {
+    CGFloat relaxedRotationLimit = 80.0f;
+    CGFloat maximumDegreeRotationForButton = 90.0f;
+    
+    // Get today button
+    NSUInteger todaySectionIndex = [self.calendarManager sectionIndexForEventNearestToDate:[NSDate date]];
+    
+    CGRect rect = [self.agendaTableView rectForSection:todaySectionIndex];
+    CGFloat yOrigin = rect.origin.y;
+    
+    CGFloat yDifference = self.agendaTableView.contentOffset.y - yOrigin;
+    CGFloat degreeRotation;
+
+    if (ABS(yDifference) <= relaxedRotationLimit) {
+        yDifference = yDifference/10;
+    }
+    else {
+        if (yDifference >= 0) {
+            degreeRotation = relaxedRotationLimit/10 + (yDifference - relaxedRotationLimit)/40;
+        }
+        else {
+            degreeRotation = -relaxedRotationLimit/10 - (ABS(yDifference)-relaxedRotationLimit)/40;
+        }
+    }
+    
+    
+    if (degreeRotation > maximumDegreeRotationForButton) {
+        degreeRotation = maximumDegreeRotationForButton;
+    }
+    else if(degreeRotation < -maximumDegreeRotationForButton){
+        degreeRotation = -maximumDegreeRotationForButton;
+    }
+    
+    
+    self.todayButton.transform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(degreeRotation));
+}
+
+- (void)setTodayButtonHidden:(BOOL)hidden animated:(BOOL)animated {
+    if (animated) {
+        [UIView transitionWithView:self.todayButton
+                          duration:0.4
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:NULL
+                        completion:NULL];
+        
+        self.todayButton.hidden = hidden;
+    }
+    else {
+        self.todayButton.hidden = hidden;
+    }
+}
+
+
+#pragma mark Today Button Action
+- (IBAction)todayButtonPressed:(id)sender {
+    [self scrollAgendaTableViewToDate:[NSDate date]];
+    [self scrollCalendarViewToDate:[NSDate date]];
+}
 @end
