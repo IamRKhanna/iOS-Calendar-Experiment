@@ -41,19 +41,20 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 @interface RKCalendarViewController() <UITableViewDataSource, UITableViewDelegate, GLCalendarViewDelegate>
 
 // Helper Variables
-@property (nonatomic, weak) RKCalendarDataManager *calendarManager;
+@property (nonatomic, strong) RKCalendarDataManager *calendarManager;
+@property (nonatomic, assign) BOOL isAgendaScrolledByCalendarView;
 
 // Menu View
-@property (nonatomic, weak) IBOutlet UIView *menuView;
+@property (nonatomic, strong) IBOutlet UILabel *menuMonthLabel;
 
 // Agenda Table View
-@property (nonatomic, weak) IBOutlet UITableView *agendaTableView;
+@property (nonatomic, strong) IBOutlet UITableView *agendaTableView;
 @property (nonatomic, strong) RKAgendaTableViewCell *sizingCell;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (nonatomic, assign) RKAgendaTableViewScrollDirection agendTableViewScrollDirection;
 
 // Calendar View
-@property (nonatomic, weak) IBOutlet GLCalendarView *calendarView;
+@property (nonatomic, strong) IBOutlet GLCalendarView *calendarView;
 
 
 @end
@@ -134,6 +135,12 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     }
 }
 
+#pragma mark - MENU VIEW
+#pragma mark Month Label Display Helper
+- (void) updateMonthLabelForMenuViewForDate:(NSDate *)date {
+    self.menuMonthLabel.text = [date monthYearString];
+}
+
 #pragma mark - CALENDAR VIEW
 
 #pragma mark Calendar View Setup
@@ -150,6 +157,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     // Attributes for calendar view
     [GLCalendarView appearance].rowHeight = 45.0f;
     [GLCalendarView appearance].padding = 0.0f;
+    [GLCalendarView appearance].weekdayTitleViewBackgroundColor = [UIColor whiteColor];
     
     [GLCalendarDayCell appearance].dayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].todayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
@@ -175,13 +183,20 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 
 - (GLCalendarDateRange *)calenderView:(GLCalendarView *)calendarView rangeToAddWithBeginDate:(NSDate *)beginDate {
     // Our range is only one date long so begin and end date shall be same
-    GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:beginDate endDate:beginDate];
-    range.editable = NO;
-    range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
+    GLCalendarDateRange *range = [self calendarRangeForDate:beginDate];
 
-    [self scrollAgendaTableViewToDate:beginDate];
+    // This delegate callback also works as item selection for the collection view. So,
+    [self didSelectDateOnCalendarview:beginDate];
     
     return range;
+}
+
+- (void)didSelectDateOnCalendarview:(NSDate *)date {
+    // Scroll agenda view to nearest event on the selected date
+    [self scrollAgendaTableViewToDate:date];
+    
+    // Update month label on top menu
+    [self updateMonthLabelForMenuViewForDate:date];
 }
 
 
@@ -201,6 +216,11 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     
     // Setup KVO
     [self setupAgendaTableViewKVO];
+    
+    // Ensure separators do not have left margin
+    if([self.agendaTableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]) {
+        self.agendaTableView.cellLayoutMarginsFollowReadableWidth = NO;
+    }
     
     // Create sizing cell to be used to determine height for each cell
     if (!self.sizingCell) {
@@ -274,8 +294,25 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [self scrollCalendarViewToDate:selectedAgendaDate];
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([scrollView isKindOfClass:[self.agendaTableView class]]) {
+    if ([scrollView isKindOfClass:[self.agendaTableView class]] && !self.isAgendaScrolledByCalendarView) {
         CGFloat yVelocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
 
         if (self.agendaTableView.contentOffset.y < 0) {
@@ -296,14 +333,14 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
     // Safety Code: Ensure top event date is selected on calendar view if scrolled to top
-    if ([scrollView isKindOfClass:[self.agendaTableView class]]) {
+    if ([scrollView isKindOfClass:[self.agendaTableView class]] && !self.isAgendaScrolledByCalendarView) {
         [self scrollCalendarViewToDate:[self.calendarManager.sortedEventsDaysArray objectAtIndex:0]];
     }
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     // Safety Code: Ensure date selected on calendar view is the date for the header on top of visible content
-    if ([scrollView isKindOfClass:[self.agendaTableView class]]) {
+    if ([scrollView isKindOfClass:[self.agendaTableView class]] && !self.isAgendaScrolledByCalendarView) {
         UITableViewCell *cell = [[(UITableView *)scrollView visibleCells] objectAtIndex:0];
         NSIndexPath *indexPath = [(UITableView *)scrollView indexPathForCell:cell];
         [self scrollCalendarViewToDate:[self.calendarManager.sortedEventsDaysArray objectAtIndex:indexPath.section]];
@@ -332,10 +369,13 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     
     NSIndexPath *indexPathForSection = [NSIndexPath indexPathForRow:0
                                                           inSection:index];
-    
+
+    self.isAgendaScrolledByCalendarView = YES;
+    self.agendTableViewScrollDirection = RKAgendaTableViewScrollDirectionNone;
     [self.agendaTableView scrollToRowAtIndexPath:indexPathForSection
                                 atScrollPosition:UITableViewScrollPositionTop
                                         animated:YES];
+    self.isAgendaScrolledByCalendarView = NO;
 }
 
 - (void)scrollCalendarViewToDate:(NSDate *)date {
@@ -343,6 +383,9 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     GLCalendarDateRange *dateRange = [self calendarRangeForDate:date];
     [self.calendarView addRange:dateRange];
 
+    // Update month year label
+    [self updateMonthLabelForMenuViewForDate:date];
+    
     // Scroll to selected date
     [self.calendarView scrollToDate:date animated:YES];
 }

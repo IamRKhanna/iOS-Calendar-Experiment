@@ -28,6 +28,7 @@
 @property (nonatomic) CGFloat padding UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat rowHeight UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) NSDictionary *weekDayTitleAttributes UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *weekdayTitleViewBackgroundColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) NSDictionary *monthCoverAttributes UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIImage *backToTodayButtonImage UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *backToTodayButtonColor UI_APPEARANCE_SELECTOR;

@@ -24,6 +24,13 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)monthYearString {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMMM y"];
+    
+    return [formatter stringFromDate:self];
+}
+
 - (BOOL)isToday {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSTimeZone *timeZone = [NSTimeZone systemTimeZone];

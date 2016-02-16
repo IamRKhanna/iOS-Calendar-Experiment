@@ -14,6 +14,8 @@
 
 - (NSString *)weekdayMonthDayString;    // Wednesday, 12 December
 
+- (NSString *)monthYearString;              // February 2016
+
 - (BOOL)isToday;
 
 - (BOOL)isYesterday;
