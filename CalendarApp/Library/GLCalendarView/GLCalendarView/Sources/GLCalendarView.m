@@ -140,8 +140,18 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
 
 - (void)addRange:(GLCalendarDateRange *)range
 {
+    // RahulKhanna: Only allowing a single range at a time so as to align with the required design
+    NSMutableArray *existingRangesArray = [NSMutableArray array];
+    for (GLCalendarDateRange *range in self.ranges) {
+        [existingRangesArray addObject:range];
+    }
+    [self.ranges removeAllObjects];
     [self.ranges addObject:range];
     [self reloadFromBeginDate:range.beginDate toDate:range.endDate];
+    
+    for(GLCalendarDateRange *range in existingRangesArray) {
+        [self reloadFromBeginDate:range.beginDate toDate:range.endDate];
+    }
 }
 
 - (void)removeRange:(GLCalendarDateRange *)range

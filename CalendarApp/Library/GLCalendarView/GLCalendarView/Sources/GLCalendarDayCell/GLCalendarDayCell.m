@@ -69,8 +69,10 @@
     self.todayBackgroundColor = appearance.todayBackgroundColor ?: self.backgroundCover.strokeColor;
     self.containerPadding = [GLCalendarView appearance].padding;
     
+    // Appearance settings for Agenda Indicator view
     self.agendaIndicatorView.layer.cornerRadius = self.agendaIndicatorView.frame.size.width/2;
     self.agendaIndicatorView.backgroundColor = appearance.agendaIndicatorColor ?: self.backgroundCover.strokeColor;
+    self.todayAgendaIndicatorColor = appearance.todayAgendaIndicatorColor ?: self.backgroundCover.strokeColor;
 }
 
 - (void)setDate:(NSDate *)date range:(GLCalendarDateRange *)range cellPosition:(CELL_POSITION)cellPosition enlargePoint:(ENLARGE_POINT)enlargePoint
@@ -123,19 +125,27 @@
         
     // day label and month label
     if ([self isToday]) {
-        // Uncomment below code if you want to see the Today label on top of today cell like month start cell
-//        self.monthLabel.textColor = [UIColor whiteColor];
-//        [self setMonthLabelText:@"Today"];
-        self.monthLabel.textColor = [UIColor blackColor];
-        [self setMonthLabelText:@""];
-        self.yearLabel.textColor = [UIColor blackColor];
-        [self setYearLabelText:@""];
-        self.dayLabel.textColor = [UIColor whiteColor];
-        [self setTodayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
-        self.backgroundCover.isToday = YES;
-        self.backgroundCover.fillColor = self.todayBackgroundColor;
+        // If day is 1 today, then show month text. Since this is definitely current year, no need for year label
+        if (day == 1) {
+            self.monthLabel.textColor = [UIColor redColor];
+            [self setMonthLabelText:[self monthText:month]];
+            
+            self.yearLabel.textColor = [UIColor blackColor];
+            [self setYearLabelText:@""];
+        }
+        else {
+            // No need to display month/year on today
+            self.monthLabel.textColor = [UIColor redColor];
+            [self setMonthLabelText:@""];
+            self.yearLabel.textColor = [UIColor blackColor];
+            [self setYearLabelText:@""];
+        }
         
-        self.agendaIndicatorView.backgroundColor = self.todayBackgroundColor;
+        self.dayLabel.textColor = [UIColor blackColor];
+        [self setTodayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
+        
+        // Setup agenda indicator view with today
+        self.agendaIndicatorView.backgroundColor = self.todayAgendaIndicatorColor;
         if ([[RKCalendarDataManager sharedInstance] doesEventExistForDate:self.date]) {
             self.agendaIndicatorView.hidden = NO;
         } else {
@@ -160,8 +170,8 @@
         self.dayLabel.textColor = [UIColor redColor];
         [self setDayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = NO;
-        self.agendaIndicatorView.backgroundColor = self.todayBackgroundColor;
-        
+
+        // Hdie agenda indicator for the first day of month
         self.agendaIndicatorView.hidden = YES;
     } else {
         self.monthLabel.textColor = [UIColor blackColor];
@@ -172,6 +182,7 @@
         [self setDayLabelText:[NSString stringWithFormat:@"%ld", (long)day]];
         self.backgroundCover.isToday = NO;
 
+        // Setup agenda Indicator
         self.agendaIndicatorView.backgroundColor = self.agendaIndicatorColor;
         if ([[RKCalendarDataManager sharedInstance] doesEventExistForDate:self.date]) {
             self.agendaIndicatorView.hidden = NO;
@@ -187,12 +198,16 @@
     
     // background cover
     if (self.range) {
+        // Always hide agenda indicator view when in range
+        self.agendaIndicatorView.hidden = YES;
+        
         // configure look when in range
         self.backgroundCover.fillColor = self.range.backgroundColor ?: [UIColor clearColor];
         self.backgroundCover.backgroundImage = self.range.backgroundImage ?: nil;
         UIColor *textColor = self.range.textColor ?: [UIColor whiteColor];
         self.monthLabel.textColor = textColor;
         self.dayLabel.textColor = textColor;
+        self.yearLabel.textColor = textColor;
         
         // check position in range
         BOOL isBeginDate = [GLDateUtils date:self.date isSameDayAsDate:self.range.beginDate];
