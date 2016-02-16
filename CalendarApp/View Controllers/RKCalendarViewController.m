@@ -21,7 +21,7 @@
 #import "RKAgendaTableViewSectionHeaderView.h"
 
 
-@interface RKCalendarViewController() <UITableViewDataSource, UITableViewDelegate>
+@interface RKCalendarViewController() <UITableViewDataSource, UITableViewDelegate, GLCalendarViewDelegate>
 
 // Helper Variables
 @property (nonatomic, weak) RKCalendarDataManager *calendarManager;
@@ -123,6 +123,7 @@
     self.calendarView.firstDate = [self.calendarManager startDateForCalendarView];
     self.calendarView.lastDate = [self.calendarManager endDateForCalendarView];
     self.calendarView.scrollDecelartionRate = UIScrollViewDecelerationRateNormal;
+    self.calendarView.delegate = self;
     
     [GLCalendarView appearance].rowHeight = 45.0f;
     [GLCalendarView appearance].padding = 0.0f;
@@ -133,6 +134,21 @@
     [GLCalendarDayCell appearance].monthLabelAttributes = @{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].yearLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:7], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].agendaIndicatorColor = [UIColor colorFromHexString:@"#E6E6E6"];
+}
+
+#pragma mark Calendar View Delegate
+- (BOOL)calenderView:(GLCalendarView *)calendarView canAddRangeWithBeginDate:(NSDate *)beginDate {
+    return YES;
+}
+
+- (GLCalendarDateRange *)calenderView:(GLCalendarView *)calendarView rangeToAddWithBeginDate:(NSDate *)beginDate {
+    // Our range is only one date long so begin and end date shall be same
+    GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:beginDate endDate:beginDate];
+    range.editable = NO;
+    range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
+    
+    return range;
+    
 }
 
 
