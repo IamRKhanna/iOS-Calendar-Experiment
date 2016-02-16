@@ -125,15 +125,29 @@
     self.calendarView.scrollDecelartionRate = UIScrollViewDecelerationRateNormal;
     self.calendarView.delegate = self;
     
+    
+    
+    GLCalendarDateRange *todayRange = [self calendarRangeForToday];
+    self.calendarView.ranges = [@[todayRange] mutableCopy];
+    
     [GLCalendarView appearance].rowHeight = 45.0f;
     [GLCalendarView appearance].padding = 0.0f;
     
     [GLCalendarDayCell appearance].dayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
-    [GLCalendarDayCell appearance].todayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15]};
+    [GLCalendarDayCell appearance].todayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].todayBackgroundColor = [UIColor colorFromHexString:@"#0073C6"];
     [GLCalendarDayCell appearance].monthLabelAttributes = @{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].yearLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:7], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].agendaIndicatorColor = [UIColor colorFromHexString:@"#E6E6E6"];
+    [GLCalendarDayCell appearance].todayAgendaIndicatorColor = [UIColor blueColor];
+}
+
+- (GLCalendarDateRange *)calendarRangeForToday {
+    GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:[NSDate date] endDate:[NSDate date]];
+    range.editable = NO;
+    range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
+
+    return range;
 }
 
 #pragma mark Calendar View Delegate
@@ -148,7 +162,6 @@
     range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
     
     return range;
-    
 }
 
 
