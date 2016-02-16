@@ -235,8 +235,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     RKAgendaTableViewSectionHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[RKAgendaTableViewSectionHeaderView reuseIdentifier]];
+    
     view.sectionDate = [self.calendarManager.sortedEventsDaysArray objectAtIndex:section];
-    view.backgroundColor = [UIColor colorFromHexString:@"#F8F8F8"];
+    
     return view;
 }
 

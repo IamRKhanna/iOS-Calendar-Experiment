@@ -76,6 +76,8 @@
     self.topBorderViewHeightConstraint.constant = 0.5f;
     self.bottomBorderViewHeightConstraint.constant = 0.5f;
     
+    self.backgroundColor = [UIColor colorFromHexString:@"#F8F8F8"];
+    
     // Apply Auto Resizing Mask On Content View
     self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
 }
@@ -110,13 +112,16 @@
         else if([self.sectionDate isTomorrow]) {
             NSString *dateString = [NSString stringWithFormat:@"TOMORROW • %@", [self.sectionDate weekdayMonthDayString]];
             self.dateLabel.text = [dateString uppercaseString];
+            self.dateLabel.textColor = [UIColor colorFromHexString:@"#A0A0A0"];
         }
         else if ([self.sectionDate isYesterday]) {
             NSString *dateString = [NSString stringWithFormat:@"YESTERDAY • %@", [self.sectionDate weekdayMonthDayString]];
             self.dateLabel.text = [dateString uppercaseString];
+            self.dateLabel.textColor = [UIColor colorFromHexString:@"#A0A0A0"];
         }
         else {
             self.dateLabel.text = [[self.sectionDate weekdayMonthDayString] uppercaseString];
+            self.dateLabel.textColor = [UIColor colorFromHexString:@"#A0A0A0"];
         }
     }
 }
