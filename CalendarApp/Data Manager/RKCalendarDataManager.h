@@ -10,6 +10,7 @@
 #import <EventKit/EventKit.h>
 
 extern NSString * const RKCalendarDataManagerDidUpdateEventsNotification;
+extern NSString * const RKCalendarDataManagerAccessPermissionDidChangeNotification;
 
 @interface RKCalendarDataManager : NSObject
 

@@ -12,6 +12,7 @@
 #import "UIColor+HexString.h"
 #import "NSDate+RKCalendarHelper.h"
 #import "RKInterfaceConstants.h"
+#import "RKCalendarPermissionView.h"
 
 // Calendar View File Imports
 #import "GLCalendarView.h"
@@ -66,6 +67,10 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 // Today button
 @property (nonatomic, strong) IBOutlet UIButton *todayButton;
 
+// Permission Access View
+@property (nonatomic, strong) RKCalendarPermissionView *permissionView;
+
+// Actions
 - (IBAction)todayButtonPressed:(id)sender;
 
 @end
@@ -109,6 +114,12 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     // Get an instance of Data manager for reference
     _calendarManager = [RKCalendarDataManager sharedInstance];
     
+    // Initiate permission view and hide it for now
+    self.permissionView = [[RKCalendarPermissionView alloc] init];
+    self.permissionView.hidden = YES;
+    [self.view addSubview:self.permissionView];
+    
+    // Add notification observers
     [self addNotificationObservers];
 }
 
@@ -120,6 +131,12 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
                                              selector:@selector(calendarManagerDidUpdateData:)
                                                  name:RKCalendarDataManagerDidUpdateEventsNotification
                                                object:nil];
+
+    // Add an observer to received calendar access permission change
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(calendarAccessPermissionDidChange:)
+                                                 name:RKCalendarDataManagerAccessPermissionDidChangeNotification
+                                               object:nil];
 }
 
 - (void)removeNotificatonObservers {
@@ -127,6 +144,11 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     // Remove observer for calendar changes
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:RKCalendarDataManagerDidUpdateEventsNotification
+                                                  object:nil];
+    
+    // Remove observer for calendar permission
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:RKCalendarDataManagerAccessPermissionDidChangeNotification
                                                   object:nil];
     
 }
@@ -140,7 +162,30 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [self.calendarView reload];
 }
 
+- (void)calendarAccessPermissionDidChange:(NSNotification *)notification {
+    BOOL hasCalendarPermission = [(NSNumber *)notification.object boolValue];
 
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (hasCalendarPermission) {
+            // Enable Agenda table view
+            self.agendaTableView.alpha = 1.0;
+            [self.agendaTableView setUserInteractionEnabled:YES];
+            
+            // Hide permission view
+            self.permissionView.hidden = YES;
+        }
+        else {
+            // Tone down the alpha for agenda table view & disable interaction
+            self.agendaTableView.alpha = 0.3;
+            [self.agendaTableView setUserInteractionEnabled:NO];
+            
+            
+            // Set permission view frame and show it
+            self.permissionView.frame = CGRectMake(self.agendaTableView.frame.origin.x + 20.0f, self.agendaTableView.frame.origin.y + self.agendaTableView.frame.size.height/2 - self.permissionView.frame.size.height/2, self.agendaTableView.frame.size.width - 40.0f, 150.0f);
+            self.permissionView.hidden = NO;
+        }
+    });
+}
 
 #pragma mark - Key Value Observer
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
@@ -455,6 +500,11 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     if (shouldExpandAgendaView) {
         numberOfRows = 2;
     }
+    
+    [self updateAgendaTableViewHeightToDiplayNumberOfRowsofCalendarView:numberOfRows];
+}
+
+-(void)updateAgendaTableViewHeightToDiplayNumberOfRowsofCalendarView:(NSUInteger)numberOfRows {
     // Set Table View height constraint
     self.agendaTableViewHeightConstraint.constant = self.view.frame.size.height - (self.menuView.frame.origin.y + self.menuView.frame.size.height) - ([self.calendarView heightToDisplayNumberOfRows:numberOfRows]);
     [self.view setNeedsLayout];

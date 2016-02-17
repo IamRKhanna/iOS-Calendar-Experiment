@@ -8,9 +8,6 @@
 
 #import "RKCalendarDataHelper.h"
 
-NSString * const RKCalendarAccessPermissionGrantedKey = @"RKCalendarAccessPermissionGrantedKey";
-
-
 @implementation RKCalendarDataHelper
 
 + (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate

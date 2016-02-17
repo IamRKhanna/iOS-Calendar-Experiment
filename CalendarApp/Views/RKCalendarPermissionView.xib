@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="SL9-1r-Fau" customClass="RKCalendarPermissionView">
+            <rect key="frame" x="0.0" y="0.0" width="512" height="163"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ih8-lr-m8W">
+                    <rect key="frame" x="0.0" y="24" width="512" height="115"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need Calendar Permission" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cji-JG-LMd">
+                            <rect key="frame" x="113" y="0.0" width="287" height="30"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
+                            <color key="textColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In iPhone settings, tap CaendarApp and turn on Calendar" textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-C5-My5">
+                            <rect key="frame" x="64" y="37" width="385" height="18"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhd-oF-32I">
+                            <rect key="frame" x="207" y="84" width="98" height="30"/>
+                            <state key="normal" title="Open Settings">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="openSettingsButtonTapped:" destination="SL9-1r-Fau" eventType="touchUpInside" id="rs2-IG-cQ8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="zhd-oF-32I" secondAttribute="bottom" constant="0.5" id="8UH-Vt-oSU"/>
+                        <constraint firstAttribute="centerX" secondItem="cji-JG-LMd" secondAttribute="centerX" id="Hxh-AC-udW"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zhd-oF-32I" secondAttribute="trailing" constant="15" id="OQm-6B-f2t"/>
+                        <constraint firstItem="cji-JG-LMd" firstAttribute="top" secondItem="ih8-lr-m8W" secondAttribute="top" id="RTY-6z-fGf"/>
+                        <constraint firstItem="zhd-oF-32I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ih8-lr-m8W" secondAttribute="leading" constant="15" id="cvb-Qe-zhE"/>
+                        <constraint firstAttribute="centerX" secondItem="zhd-oF-32I" secondAttribute="centerX" id="mDm-P8-jBa"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cji-JG-LMd" secondAttribute="trailing" constant="15" id="nYs-kX-gzt"/>
+                        <constraint firstItem="ONI-C5-My5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ih8-lr-m8W" secondAttribute="leading" constant="15" id="o7z-58-5L7"/>
+                        <constraint firstItem="zhd-oF-32I" firstAttribute="top" secondItem="ONI-C5-My5" secondAttribute="bottom" constant="30" id="qko-er-Wb9"/>
+                        <constraint firstItem="ONI-C5-My5" firstAttribute="top" secondItem="cji-JG-LMd" secondAttribute="bottom" constant="7.5" id="rEN-lG-oat"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ONI-C5-My5" secondAttribute="trailing" constant="15" id="vNx-fK-GTq"/>
+                        <constraint firstItem="cji-JG-LMd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ih8-lr-m8W" secondAttribute="leading" constant="15" id="xMu-pN-Odm"/>
+                        <constraint firstAttribute="centerX" secondItem="ONI-C5-My5" secondAttribute="centerX" id="yb4-zH-9TV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="ih8-lr-m8W" secondAttribute="centerY" id="2Tz-ci-Xci"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ih8-lr-m8W" secondAttribute="bottom" id="2ky-DC-16h"/>
+                <constraint firstItem="ih8-lr-m8W" firstAttribute="leading" secondItem="SL9-1r-Fau" secondAttribute="leading" id="Rpg-Vl-ih6"/>
+                <constraint firstItem="ih8-lr-m8W" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SL9-1r-Fau" secondAttribute="top" id="TAW-Lv-G9q"/>
+                <constraint firstAttribute="centerX" secondItem="ih8-lr-m8W" secondAttribute="centerX" id="Z6k-xi-ABf"/>
+                <constraint firstAttribute="trailing" secondItem="ih8-lr-m8W" secondAttribute="trailing" id="nGS-LY-9y6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="messageLabel" destination="ONI-C5-My5" id="miD-Hz-vgK"/>
+                <outlet property="openSettingsButton" destination="zhd-oF-32I" id="ZSh-4Z-PEb"/>
+                <outlet property="titleLabel" destination="cji-JG-LMd" id="GzD-Qc-dAb"/>
+            </connections>
+            <point key="canvasLocation" x="314" y="526.5"/>
+        </view>
+    </objects>
+</document>

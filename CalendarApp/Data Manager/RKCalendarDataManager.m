@@ -13,7 +13,7 @@
 
 // Defining Notification Constants
 NSString * const RKCalendarDataManagerDidUpdateEventsNotification = @"RKCalendarDataManagerDidUpdateEventsNotification";
-
+NSString * const RKCalendarDataManagerAccessPermissionDidChangeNotification = @"RKCalendarDataManagerAccessPermissionDidChangeNotification";
 
 @interface RKCalendarDataManager()
 
@@ -115,8 +115,9 @@ static  RKCalendarDataManager *sharedInstance = nil;
 - (void)setAccessToCalendarGranted:(BOOL)accessToCalendarGranted {
     _accessToCalendarGranted = accessToCalendarGranted;
     
-    // Store this data in user defaults
-    [[NSUserDefaults standardUserDefaults] setBool:accessToCalendarGranted forKey:RKCalendarAccessPermissionGrantedKey];
+    // Send out a access change notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:RKCalendarDataManagerAccessPermissionDidChangeNotification
+                                                        object:[NSNumber numberWithBool:accessToCalendarGranted]];
 }
 
 #pragma mark - Calendar Dates

@@ -35,6 +35,8 @@
 		CE1F44EB1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44D31C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m */; };
 		CE1F44EC1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44D41C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib */; };
 		CE1F44EF1C70FC700047511D /* RKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44EE1C70FC700047511D /* RKAppDelegate.m */; };
+		CEB306BD1C7473EA009C56C0 /* RKCalendarPermissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB306BC1C7473EA009C56C0 /* RKCalendarPermissionView.m */; };
+		CEB306BF1C7473F2009C56C0 /* RKCalendarPermissionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB306BE1C7473F2009C56C0 /* RKCalendarPermissionView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,9 @@
 		CE1F44D41C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKAgendaTableViewSectionHeaderView.xib; sourceTree = "<group>"; };
 		CE1F44ED1C70FC700047511D /* RKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKAppDelegate.h; sourceTree = "<group>"; };
 		CE1F44EE1C70FC700047511D /* RKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKAppDelegate.m; sourceTree = "<group>"; };
+		CEB306BB1C7473EA009C56C0 /* RKCalendarPermissionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCalendarPermissionView.h; sourceTree = "<group>"; };
+		CEB306BC1C7473EA009C56C0 /* RKCalendarPermissionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCalendarPermissionView.m; sourceTree = "<group>"; };
+		CEB306BE1C7473F2009C56C0 /* RKCalendarPermissionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCalendarPermissionView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +268,9 @@
 				CE1F44D21C70FC620047511D /* RKAgendaTableViewSectionHeaderView.h */,
 				CE1F44D31C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m */,
 				CE1F44D41C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib */,
+				CEB306BB1C7473EA009C56C0 /* RKCalendarPermissionView.h */,
+				CEB306BC1C7473EA009C56C0 /* RKCalendarPermissionView.m */,
+				CEB306BE1C7473F2009C56C0 /* RKCalendarPermissionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +340,7 @@
 				CE1F44E71C70FC620047511D /* gl-calendar-shadow@3x.png in Resources */,
 				CE1F44E41C70FC620047511D /* gl-calendar-magnify-glass@2x.png in Resources */,
 				CE1F44E81C70FC620047511D /* LICENSE in Resources */,
+				CEB306BF1C7473F2009C56C0 /* RKCalendarPermissionView.xib in Resources */,
 				CE1F44E31C70FC620047511D /* gl-calendar-magnify-glass.png in Resources */,
 				CE1F44E51C70FC620047511D /* gl-calendar-shadow.png in Resources */,
 				CE1F44E61C70FC620047511D /* gl-calendar-shadow@2x.png in Resources */,
@@ -347,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB306BD1C7473EA009C56C0 /* RKCalendarPermissionView.m in Sources */,
 				CE1F44D71C70FC620047511D /* RKAgendaTableViewCell.m in Sources */,
 				CE1F44D61C70FC620047511D /* UIColor+HexString.m in Sources */,
 				CE1F44EB1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.m in Sources */,

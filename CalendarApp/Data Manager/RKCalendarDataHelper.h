@@ -14,11 +14,6 @@
 #define RK_CALENDAR_DEFAULT_END_YEAR                    2020    // Reference taken from Outlook iOS App
 
 /**
- *  Key to check whether user has granted permission
- */
-extern NSString * const RKCalendarAccessPermissionGrantedKey;
-
-/**
  *  Purpose of this class is to provide class level helper methods for NSDate related operations
  */
 @interface RKCalendarDataHelper : NSObject
