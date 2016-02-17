@@ -28,7 +28,7 @@
     
     NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
     monthFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    monthFormatter.dateFormat = @"YYYY\nMMMM";
+    monthFormatter.dateFormat = @"MMMM y";
 
     NSDateComponents *today = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
     
@@ -45,13 +45,17 @@
         monthLabel.lineBreakMode = NSLineBreakByWordWrapping;
         monthLabel.numberOfLines = 0;
         monthLabel.textAlignment = NSTextAlignmentCenter;
-        NSString *labelText = [monthFormatter stringFromDate:date];
+        NSString *labelText;
         if (today.year == components.year) {
-            labelText = [labelText substringFromIndex:5];
+            monthFormatter.dateFormat = @"MMMM";
+            labelText = [monthFormatter stringFromDate:date];
+        }
+        else {
+            labelText = [monthFormatter stringFromDate:date];
         }
         
         monthLabel.attributedText = [[NSAttributedString alloc] initWithString:labelText attributes:self.textAttributes];;
-        monthLabel.center = CGPointMake(CGRectGetMidX(self.bounds), ceilf(rowHeight * (dayDiff / 7 + 2)));
+        monthLabel.center = CGPointMake(CGRectGetMidX(self.bounds), ceilf(rowHeight * (dayDiff / 7 + 2))+rowHeight/2);
         monthLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
         [self addSubview:monthLabel];
