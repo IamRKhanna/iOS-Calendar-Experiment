@@ -379,9 +379,7 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    CGPoint currentContentOffset = self.collectionView.contentOffset;
     
-    [self.collectionView setContentOffset:CGPointMake(currentContentOffset.x, floorf(currentContentOffset.y/self.rowHeight)*self.rowHeight) animated:YES];
     if (!decelerate) {
         [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState  animations:^{
             self.monthCoverView.alpha = 0;
