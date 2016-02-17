@@ -44,7 +44,11 @@ static  RKCalendarDataManager *sharedInstance = nil;
         // Custom initialization
         _eventStore = [[EKEventStore alloc] init];
         
+        // Update access permissions
         [self updateCalendarAccessPermissions];
+        
+        // Add Notification observers
+        [self addNotificationObservers];
     }
     
     return self;

@@ -108,6 +108,8 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 - (void) basicInitialization {
     // Get an instance of Data manager for reference
     _calendarManager = [RKCalendarDataManager sharedInstance];
+    
+    [self addNotificationObservers];
 }
 
 #pragma mark - Notification Observers
@@ -131,8 +133,11 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 
 - (void)calendarManagerDidUpdateData:(NSNotification *)notification {
     
-    // Update Table View
+    // Update Agenda View
     [self.agendaTableView reloadData];
+    
+    // Update Calendar View
+    [self.calendarView reload];
 }
 
 
