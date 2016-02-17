@@ -468,19 +468,23 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 
 #pragma mark Utility Methods
 - (void)scrollAgendaTableViewToDate:(NSDate *)date {
-    
-    // Check if there are any events on given day
-    NSUInteger sectionIndex = [self.calendarManager sectionIndexForEventNearestToDate:date];
-    
-    NSIndexPath *indexPathForSection = [NSIndexPath indexPathForRow:0
-                                                          inSection:sectionIndex];
+    if(self.calendarManager.accessToCalendarGranted) {
+        // Check if there are any events on given day
+        NSUInteger sectionIndex = [self.calendarManager sectionIndexForEventNearestToDate:date];
+        
+        NSIndexPath *indexPathForSection = [NSIndexPath indexPathForRow:0
+                                                              inSection:sectionIndex];
 
-    self.isAgendaScrolledByCalendarView = YES;
-    self.agendTableViewScrollDirection = RKAgendaTableViewScrollDirectionNone;
-    [self.agendaTableView scrollToRowAtIndexPath:indexPathForSection
-                                atScrollPosition:UITableViewScrollPositionTop
-                                        animated:YES];
-    self.isAgendaScrolledByCalendarView = NO;
+        if (indexPathForSection) {
+            self.isAgendaScrolledByCalendarView = YES;
+            self.agendTableViewScrollDirection = RKAgendaTableViewScrollDirectionNone;
+            
+            [self.agendaTableView scrollToRowAtIndexPath:indexPathForSection
+                                        atScrollPosition:UITableViewScrollPositionTop
+                                                animated:YES];
+            self.isAgendaScrolledByCalendarView = NO;
+        }
+    }
 }
 
 - (void)scrollCalendarViewToDate:(NSDate *)date {
