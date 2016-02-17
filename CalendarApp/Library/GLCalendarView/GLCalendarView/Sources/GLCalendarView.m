@@ -131,8 +131,6 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
     self.rowHeight = appearance.rowHeight ?: DEFAULT_ROW_HEIGHT;
     self.weekDayTitleAttributes = appearance.weekDayTitleAttributes ?: @{NSFontAttributeName:[UIFont systemFontOfSize:8], NSForegroundColorAttributeName:[UIColor grayColor]};
     self.monthCoverAttributes = appearance.monthCoverAttributes ?: @{NSFontAttributeName:[UIFont systemFontOfSize:30]};
-    self.monthCoverView.textAttributes = self.monthCoverAttributes;
-    
     self.weekdayTitleViewBackgroundColor = appearance.weekdayTitleViewBackgroundColor ?: nil;
     
 }
@@ -141,6 +139,7 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
 
 - (void)reload
 {
+    self.monthCoverView.textAttributes = self.monthCoverAttributes;
     [self.monthCoverView updateWithFirstDate:self.firstDate lastDate:self.lastDate calendar:self.calendar rowHeight:self.rowHeight];
     [self.collectionView reloadData];
 }
