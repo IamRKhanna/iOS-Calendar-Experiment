@@ -38,6 +38,8 @@ typedef NS_ENUM(NSInteger, RANGE_DISPLAY_MODE) {
 // Agenda indicator attributes
 @property (nonatomic, strong) UIColor *todayAgendaIndicatorColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *agendaIndicatorColor UI_APPEARANCE_SELECTOR;
+// Border color attributes
+@property (nonatomic, strong) UIColor *borderColor UI_APPEARANCE_SELECTOR;
 
 @property (nonatomic) CGFloat editCoverPadding UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat editCoverBorderWidth UI_APPEARANCE_SELECTOR;

@@ -35,6 +35,13 @@
 // Custom View to show whether the date has an agenda
 @property (weak, nonatomic) IBOutlet UIView *agendaIndicatorView;
 
+// Border views
+@property (weak, nonatomic) IBOutlet UIView *topBorderView;
+@property (weak, nonatomic) IBOutlet UIView *bottomBorderView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBorderViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomBorderViewHeightConstraint;
+
 @end
 
 @implementation GLCalendarDayCell
@@ -73,6 +80,9 @@
     self.agendaIndicatorView.layer.cornerRadius = self.agendaIndicatorView.frame.size.width/2;
     self.agendaIndicatorView.backgroundColor = appearance.agendaIndicatorColor ?: self.backgroundCover.strokeColor;
     self.todayAgendaIndicatorColor = appearance.todayAgendaIndicatorColor ?: self.backgroundCover.strokeColor;
+    
+    // Border color
+    self.borderColor = appearance.borderColor ?: [UIColor blackColor];
 }
 
 - (void)setDate:(NSDate *)date range:(GLCalendarDateRange *)range cellPosition:(CELL_POSITION)cellPosition enlargePoint:(ENLARGE_POINT)enlargePoint
@@ -91,7 +101,11 @@
 
 - (void)updateUI
 {
-//    NSLog(@"update ui: %@ %d", [GLDateUtils descriptionForDate:self.date], _enlargePoint);
+    // Set top and bottom border views' heights
+    self.topBorderViewHeightConstraint.constant = 0.25;
+    self.bottomBorderViewHeightConstraint.constant = 0.25;
+    self.topBorderView.backgroundColor = self.borderColor;
+    self.bottomBorderView.backgroundColor = self.borderColor;
 
     NSDateComponents *components = [[GLDateUtils calendar] components:NSCalendarUnitYear|NSCalendarUnitDay|NSCalendarUnitMonth fromDate:self.date];
     NSInteger year = components.year;

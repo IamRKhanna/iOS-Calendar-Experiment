@@ -18,6 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="54" height="56"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydg-mW-WIw">
+                        <rect key="frame" x="0.0" y="0.0" width="54" height="0.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="PVq-nD-TRc"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzu-El-Gfs" userLabel="day label">
                         <rect key="frame" x="7" y="8" width="40" height="40"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -26,7 +33,7 @@
                             <constraint firstAttribute="height" constant="40" id="yuk-wZ-hTi"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ih-2e-aSb" userLabel="month label">
@@ -37,7 +44,7 @@
                             <constraint firstAttribute="width" constant="40" id="tUx-Fs-r8t"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkN-HJ-qIp" userLabel="year label">
@@ -48,7 +55,7 @@
                             <constraint firstAttribute="width" constant="40" id="hsi-TP-6hY"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujh-fp-hDn" userLabel="agenda indicator view">
@@ -59,13 +66,23 @@
                             <constraint firstAttribute="width" constant="4" id="fyG-Xx-0Mv"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNm-2c-Mre">
+                        <rect key="frame" x="0.0" y="55.5" width="54" height="0.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="nmv-bm-2YJ"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="gkN-HJ-qIp" secondAttribute="bottom" constant="2" id="5O2-CH-P4O"/>
+                <constraint firstItem="ydg-mW-WIw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BAl-Zr-zId"/>
                 <constraint firstAttribute="centerY" secondItem="Qzu-El-Gfs" secondAttribute="centerY" id="JcK-sM-fVt"/>
+                <constraint firstItem="mNm-2c-Mre" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NGP-jM-hM8"/>
+                <constraint firstAttribute="trailing" secondItem="mNm-2c-Mre" secondAttribute="trailing" id="Sfw-tK-nSi"/>
                 <constraint firstAttribute="centerX" secondItem="Qzu-El-Gfs" secondAttribute="centerX" id="TI3-mt-0qb"/>
                 <constraint firstItem="Ujh-fp-hDn" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="U1d-1r-Oyc"/>
                 <constraint firstAttribute="bottom" secondItem="Ujh-fp-hDn" secondAttribute="bottom" constant="4" id="d3U-50-GlX"/>
@@ -75,7 +92,10 @@
                 <constraint firstAttribute="bottom" secondItem="HQX-TK-Jgx" secondAttribute="bottom" id="otX-B0-VxV"/>
                 <constraint firstItem="HQX-TK-Jgx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="puQ-V0-Nr0"/>
                 <constraint firstAttribute="trailing" secondItem="HQX-TK-Jgx" secondAttribute="trailing" id="qa7-L7-lry"/>
+                <constraint firstAttribute="trailing" secondItem="ydg-mW-WIw" secondAttribute="trailing" id="vZM-GY-XvP"/>
+                <constraint firstItem="ydg-mW-WIw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="w2G-2I-cOa"/>
                 <constraint firstAttribute="centerX" secondItem="0ih-2e-aSb" secondAttribute="centerX" id="wae-7b-nvD"/>
+                <constraint firstAttribute="bottom" secondItem="mNm-2c-Mre" secondAttribute="bottom" id="zbB-J5-Sy5"/>
             </constraints>
             <size key="customSize" width="54" height="56"/>
             <connections>
@@ -83,11 +103,15 @@
                 <outlet property="backgroundCover" destination="HQX-TK-Jgx" id="CwL-Wf-smS"/>
                 <outlet property="backgroundCoverLeft" destination="puQ-V0-Nr0" id="Rvd-Gt-Lmr"/>
                 <outlet property="backgroundCoverRight" destination="qa7-L7-lry" id="GTD-Ob-t3h"/>
+                <outlet property="bottomBorderView" destination="mNm-2c-Mre" id="oQU-RO-fsk"/>
+                <outlet property="bottomBorderViewHeightConstraint" destination="nmv-bm-2YJ" id="XSC-rQ-EeO"/>
                 <outlet property="dayLabel" destination="Qzu-El-Gfs" id="U7r-Ur-qvJ"/>
                 <outlet property="monthLabel" destination="0ih-2e-aSb" id="7zG-BM-ome"/>
+                <outlet property="topBorderView" destination="ydg-mW-WIw" id="IAP-b5-mFX"/>
+                <outlet property="topBorderViewHeightConstraint" destination="PVq-nD-TRc" id="bwA-Hr-coe"/>
                 <outlet property="yearLabel" destination="gkN-HJ-qIp" id="rH0-Y0-tTw"/>
             </connections>
-            <point key="canvasLocation" x="-492" y="104"/>
+            <point key="canvasLocation" x="-805" y="51"/>
         </collectionViewCell>
     </objects>
 </document>

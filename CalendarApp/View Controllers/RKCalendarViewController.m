@@ -187,6 +187,9 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 
     [GLCalendarDayCell appearance].evenMonthBackgroundColor = [UIColor whiteColor];
     [GLCalendarDayCell appearance].oddMonthBackgroundColor = [UIColor colorFromHexString:@"#F8F8F8"];
+    
+    // Border color for cells
+    [GLCalendarDayCell appearance].borderColor = [UIColor colorFromHexString:@"#E3E3E3"];
 }
 
 - (GLCalendarDateRange *)calendarRangeForDate:(NSDate *)date {
