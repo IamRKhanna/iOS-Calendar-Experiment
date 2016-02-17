@@ -184,6 +184,9 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [GLCalendarDayCell appearance].yearLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:7], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].agendaIndicatorColor = [UIColor colorFromHexString:@"#E6E6E6"];
     [GLCalendarDayCell appearance].todayAgendaIndicatorColor = [UIColor blueColor];
+
+    [GLCalendarDayCell appearance].evenMonthBackgroundColor = [UIColor whiteColor];
+    [GLCalendarDayCell appearance].oddMonthBackgroundColor = [UIColor colorFromHexString:@"#F8F8F8"];
 }
 
 - (GLCalendarDateRange *)calendarRangeForDate:(NSDate *)date {
