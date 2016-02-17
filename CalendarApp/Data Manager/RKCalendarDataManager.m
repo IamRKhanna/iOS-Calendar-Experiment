@@ -143,7 +143,9 @@ static  RKCalendarDataManager *sharedInstance = nil;
     // Let's sort things by date
     self.sortedEventsDaysArray = [self sortedEventsDays];
     
-    self.isEventsDataReady = YES;
+    if (self.sortedEventsDaysArray && self.sortedEventsDaysArray.count > 0) {
+        self.isEventsDataReady = YES;
+    }
 }
 
 - (NSArray<EKEvent *> *)fetchEventsFromEventStore {
