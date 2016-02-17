@@ -55,11 +55,4 @@
     return [calendar isDateInTomorrow:self];
 }
 
-- (NSDate *)dateByAddingDays:(NSInteger)addedDays {
-    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    [dateComponents setDay:addedDays];
-    NSDate *newDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self options:0];
-    return newDate;
-}
-
 @end

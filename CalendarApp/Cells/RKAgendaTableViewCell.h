@@ -12,9 +12,17 @@
 
 @interface RKAgendaTableViewCell : UITableViewCell
 
+/**
+ *   The event for this cell
+ */
 @property (nonatomic, strong) EKEvent *event;
 
 
+/**
+ *  Method to get the reuse identifier
+ *
+ *  @return Reuse Identifier String
+ */
 + (NSString *)reuseIdentifier;
 
 @end

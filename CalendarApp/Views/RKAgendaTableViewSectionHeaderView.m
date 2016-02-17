@@ -13,8 +13,6 @@
 
 @interface RKAgendaTableViewSectionHeaderView()
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *topBorderViewHeightConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bottomBorderViewHeightConstraint;
 @end
 
 
@@ -44,6 +42,8 @@
         CGSize contentViewSize = contentView.frame.size;
         
         nibView.frame = CGRectMake(0, 0, contentViewSize.width, contentViewSize.height);
+
+        // Since the view extracted from XIB file is a UIView subclass, we should add it as a subview to the content view
         [contentView addSubview:nibView];
         
         // Basic Initialization
@@ -72,9 +72,10 @@
     return self;
 }
 
+/**
+ *  Common method for initialization
+ */
 - (void)basicInitialization {
-    self.topBorderViewHeightConstraint.constant = 0.5f;
-    self.bottomBorderViewHeightConstraint.constant = 0.5f;
     
     self.backgroundColor = [UIColor colorFromHexString:@"#F8F8F8"];
     

@@ -66,7 +66,7 @@ NSString * const RKCalendarAccessPermissionGrantedKey = @"RKCalendarAccessPermis
         [durationString appendFormat:@"%ldy ", (long)dateComponents.year];
     }
     if (dateComponents.month) {
-        [durationString appendFormat:@"%ldm ", (long)dateComponents.month];
+        [durationString appendFormat:@"%ldM ", (long)dateComponents.month];
     }
     if (dateComponents.day) {
         [durationString appendFormat:@"%ldd ", (long)dateComponents.day];
@@ -79,26 +79,6 @@ NSString * const RKCalendarAccessPermissionGrantedKey = @"RKCalendarAccessPermis
     }
     
     return durationString;
-}
-
-+ (NSUInteger )numberOfDaysBetweenStartDate:(NSDate *)startDate andEndDate:(NSDate *)endDate {
-    NSDate *fromDate;
-    NSDate *toDate;
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-    
-    [calendar setTimeZone:timeZone];
-    
-    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&fromDate
-                 interval:NULL forDate:startDate];
-    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
-                 interval:NULL forDate:endDate];
-    
-    NSDateComponents *difference = [calendar components:NSCalendarUnitDay
-                                               fromDate:fromDate toDate:toDate options:0];
-    
-    return [difference day];
 }
 
 + (NSDate *)dateAtBeginningOfYear:(NSUInteger )year {

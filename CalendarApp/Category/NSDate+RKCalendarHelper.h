@@ -10,18 +10,46 @@
 
 @interface NSDate (RKCalendarHelper)
 
-- (NSString *)amPmTimeStampString;      // 1y 3m 2d 2h
+/**
+ *  Method to get Time stamp string
+ *
+ *  @return Time Stamp string in the format of "h:mm a"
+ */
+- (NSString *)amPmTimeStampString; 
 
-- (NSString *)weekdayMonthDayString;    // Wednesday, 12 December
+/**
+ *  Method to get weekday, month and day string like "Wednesday, 12 December"
+ *
+ *  @return Weekday, month and day string in the format of "EEEE, MMMM d"
+ */
+- (NSString *)weekdayMonthDayString;
 
-- (NSString *)monthYearString;              // February 2016
+/**
+ *  Month and year string of a date like "February 2016"
+ *
+ *  @return Month, year string in the format of MMMM y
+ */
+- (NSString *)monthYearString;
 
+/**
+ *  Method to check whether the date is today's date
+ *
+ *  @return BOOL value depicting whther the date is today
+ */
 - (BOOL)isToday;
 
+/**
+ *  Method to check whether the date is yesterday's date
+ *
+ *  @return BOOL value depicting whther the date is yesterday
+ */
 - (BOOL)isYesterday;
 
+/**
+ *  Method to check whether the date is tomorrow's date
+ *
+ *  @return BOOL value depicting whther the date is tomorrow
+ */
 - (BOOL)isTomorrow;
-
-- (NSDate *)dateByAddingDays:(NSInteger)addedDays;
 
 @end

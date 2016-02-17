@@ -12,8 +12,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-// Helper Methods
-+ (UIViewController *)rootViewController;
-
 @end
 

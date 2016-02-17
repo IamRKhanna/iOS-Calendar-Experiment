@@ -173,10 +173,11 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     
     // Attributes for calendar view
     [GLCalendarView appearance].rowHeight = RK_CALENDAR_VIEW_ROW_HEIGHT;
-    [GLCalendarView appearance].padding = 0.0f;
+    [GLCalendarView appearance].padding = RK_CALENDAR_VIEW_PADDING;
     [GLCalendarView appearance].weekdayTitleViewBackgroundColor = [UIColor whiteColor];
     [GLCalendarView appearance].monthCoverAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18]};
     
+    // Attributes for calendar view cell
     [GLCalendarDayCell appearance].dayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].todayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].todayBackgroundColor = [UIColor colorFromHexString:@"#0073C6"];
@@ -184,15 +185,14 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [GLCalendarDayCell appearance].yearLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:7], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].agendaIndicatorColor = [UIColor colorFromHexString:@"#E6E6E6"];
     [GLCalendarDayCell appearance].todayAgendaIndicatorColor = [UIColor blueColor];
-
     [GLCalendarDayCell appearance].evenMonthBackgroundColor = [UIColor whiteColor];
     [GLCalendarDayCell appearance].oddMonthBackgroundColor = [UIColor colorFromHexString:@"#F8F8F8"];
-    
-    // Border color for cells
     [GLCalendarDayCell appearance].borderColor = [UIColor colorFromHexString:@"#E3E3E3"];
 }
 
 - (GLCalendarDateRange *)calendarRangeForDate:(NSDate *)date {
+    
+    // Since we don't need ranges with multiple selections, begin and end date can be the same
     GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:date endDate:date];
     range.editable = NO;
     range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
@@ -304,7 +304,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 52.0f;
+    return RK_AGENDA_VIEW_ROW_HEIGHT;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -316,7 +316,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 25.0f;
+    return RK_AGENDA_VIEW_SECTION_HEIGHT;
 }
 
 #pragma mark UITableViewDelegate
@@ -348,6 +348,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    // Update table view with animation
     [UIView animateWithDuration:0.3f
                           delay:0.0f
          usingSpringWithDamping:1.0f
@@ -358,6 +359,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
                      }
                      completion:nil];
     
+    // Display Today button
     [self setTodayButtonHidden:NO animated:YES];
 }
 

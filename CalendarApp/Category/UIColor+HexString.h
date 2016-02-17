@@ -10,7 +10,16 @@
 
 @interface UIColor (HexString)
 
+/**
+ *  Method to create UIColor from Hex string like "#FFFFFF"
+ *
+ *  @param hexString Hex string for the color
+ *
+ *  @return UIColor object
+ */
 + (UIColor *) colorFromHexString:(NSString *)hexString;
+
+
 + (CGFloat) colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length;
 
 @end

@@ -10,10 +10,21 @@
 
 @interface RKAgendaTableViewSectionHeaderView : UITableViewHeaderFooterView
 
-+ (NSString *)reuseIdentifier;
-
+/**
+ *  Date for this section
+ */
 @property (nonatomic, strong) NSDate *sectionDate;
 
+/**
+ *  IBOutlet for dateLabel
+ */
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
+
+/**
+ *  Method to get the reuse identifier
+ *
+ *  @return Reuse Identifier String
+ */
++ (NSString *)reuseIdentifier;
 
 @end

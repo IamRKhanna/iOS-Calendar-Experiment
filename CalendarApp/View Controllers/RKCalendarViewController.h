@@ -10,6 +10,4 @@
 
 @interface RKCalendarViewController : UIViewController
 
-// Agenda table view helper methods
-- (void)scrollAgendaTableViewToDate:(NSDate *)date;
 @end

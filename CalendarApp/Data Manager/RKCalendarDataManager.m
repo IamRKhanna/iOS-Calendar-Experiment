@@ -64,11 +64,18 @@ static  RKCalendarDataManager *sharedInstance = nil;
 #pragma mark - Notification Observers
 
 - (void)addNotificationObservers {
+    
     // Add an observer to receive Calendar changes made in the background
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(eventStoreChanged:)
                                                  name:EKEventStoreChangedNotification
                                                object:self.eventStore];
+    
+    // Add an observer for when application becomes active
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 }
 
 - (void)removeNotificatonObservers {
@@ -77,6 +84,11 @@ static  RKCalendarDataManager *sharedInstance = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:EKEventStoreChangedNotification
                                                   object:self.eventStore];
+    
+    // Remove observer for app did become activs
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
     
 }
 
@@ -88,6 +100,10 @@ static  RKCalendarDataManager *sharedInstance = nil;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:RKCalendarDataManagerDidUpdateEventsNotification
                                                         object:nil];
+}
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    [self updateCalendarAccessPermissions];
 }
 
 #pragma mark - Accessor methods
