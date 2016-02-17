@@ -347,9 +347,10 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
 {
     self.monthCoverView.contentSize = self.collectionView.contentSize;
     self.monthCoverView.hidden = NO;
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.monthCoverView.alpha = 1;
-        self.collectionView.alpha = 0.3;
+        self.collectionView.alpha = 0.4;
     } completion:^(BOOL finished) {
         
     }];
@@ -365,16 +366,30 @@ static NSString * const CELL_REUSE_IDENTIFIER = @"DayCell";
     self.monthCoverView.contentOffset = self.collectionView.contentOffset;
 }
 
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                     withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGPoint currentContentOffset = self.collectionView.contentOffset;
+    
+    [self.collectionView setContentOffset:CGPointMake(currentContentOffset.x, floorf(currentContentOffset.y/self.rowHeight)*self.rowHeight) animated:YES];
+    [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState  animations:^{
         self.monthCoverView.alpha = 0;
         self.collectionView.alpha = 1;
     } completion:^(BOOL finished) {
-        self.monthCoverView.hidden = YES;
+//        self.monthCoverView.hidden = YES;
     }];
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    CGPoint currentContentOffset = self.collectionView.contentOffset;
+    
+    [self.collectionView setContentOffset:CGPointMake(currentContentOffset.x, floorf(currentContentOffset.y/self.rowHeight)*self.rowHeight) animated:YES];
+    if (!decelerate) {
+        [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState  animations:^{
+            self.monthCoverView.alpha = 0;
+            self.collectionView.alpha = 1;
+        } completion:^(BOOL finished) {
+//            self.monthCoverView.hidden = YES;
+        }];
+    }
 }
 
 # pragma mark - Edit range

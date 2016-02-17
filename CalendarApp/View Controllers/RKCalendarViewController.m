@@ -94,12 +94,12 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [super viewWillAppear:animated];
     
     [self updateAgendaTableViewHeightWithExpansion:NO];
-    
-    [self.calendarView reload];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [self.calendarView reload];
     
     [self.calendarView scrollToDate:[NSDate date] animated:YES];
 }
@@ -175,6 +175,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [GLCalendarView appearance].rowHeight = RK_CALENDAR_VIEW_ROW_HEIGHT;
     [GLCalendarView appearance].padding = 0.0f;
     [GLCalendarView appearance].weekdayTitleViewBackgroundColor = [UIColor whiteColor];
+    [GLCalendarView appearance].monthCoverAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18]};
     
     [GLCalendarDayCell appearance].dayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     [GLCalendarDayCell appearance].todayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
