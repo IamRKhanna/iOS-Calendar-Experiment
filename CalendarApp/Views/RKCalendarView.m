@@ -291,7 +291,6 @@
     // Need to move the selected cell in the second row from the top as per design
     CGFloat requiredOffset = (layoutAttributes.frame.origin.y - currentContentOffset.y) - self.rowHeight;
     
-    NSLog(@"%ld, %ld, %@", (long)currentContentOffset.y, (long)(currentContentOffset.y+requiredOffset+self.collectionView.frame.size.height), NSStringFromCGSize(self.collectionView.contentSize));
     if (currentContentOffset.y+requiredOffset >= 0 && currentContentOffset.y+requiredOffset+self.collectionView.frame.size.height <= self.collectionView.contentSize.height) {
         [self.collectionView setContentOffset:CGPointMake(currentContentOffset.x, currentContentOffset.y+requiredOffset) animated:animated];
     }
