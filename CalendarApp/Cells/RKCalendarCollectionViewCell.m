@@ -12,7 +12,6 @@
 #import "RKCalendarDataManager.h"
 
 @interface BackgroundCoverView : UIView
-@property (nonatomic, assign) CGFloat widthPadding;
 @property (nonatomic, assign) CGFloat heightPadding;
 @property (nonatomic, strong) UIColor *fillColor;
 @end
@@ -22,9 +21,11 @@
 -(void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
-    CGRect frame = self.frame;
+    CGFloat height = rect.size.height;
+    CGFloat width = rect.size.width;
+    height -= self.heightPadding;
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(self.widthPadding/2, self.heightPadding/2, frame.size.width-self.widthPadding, frame.size.height-self.heightPadding)];
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((width-height)/2, self.heightPadding/2, height, height)];
     [path closePath];
     [self.fillColor setFill];
     [path fill];
@@ -147,7 +148,6 @@
     self.monthLabelAttributes = cellAppearance.monthLabelAttributes ?: @{NSFontAttributeName:[UIFont systemFontOfSize:8], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     self.yearLabelAttributes = cellAppearance.yearLabelAttributes ?: @{NSFontAttributeName:[UIFont systemFontOfSize:8], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
     
-    self.backgroundCoverView.widthPadding = cellAppearance.backgroundCoverWidthPadding ?: 20.0f;
     self.backgroundCoverView.heightPadding = cellAppearance.backgroundCoverHeightPadding ?: 10.0f;
     
     // Appearance settings for Agenda Indicator view

@@ -27,7 +27,6 @@
 @property (nonatomic, strong) UIColor *agendaIndicatorColor UI_APPEARANCE_SELECTOR;
 
 // Background view selector helper
-@property (nonatomic, assign) CGFloat backgroundCoverWidthPadding UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat backgroundCoverHeightPadding UI_APPEARANCE_SELECTOR;
 
 - (void)setDate:(NSDate *)date isSelected:(BOOL)isSelected;
