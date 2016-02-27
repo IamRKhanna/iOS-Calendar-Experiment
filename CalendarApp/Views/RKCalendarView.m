@@ -26,7 +26,9 @@
 
 @end
 
-@implementation RKCalendarView
+@implementation RKCalendarView {
+    BOOL _hasSetupWeekDayTitles;
+}
 
 #pragma mark - Initialization
 
@@ -154,21 +156,25 @@
 
 #pragma mark - Weekday Title View Setup
 - (void)setupWeekDayTitle {
-    if (self.weekdayTitleViewBackgroundColor) {
-        self.weekDayTitleView.backgroundColor = self.weekdayTitleViewBackgroundColor;
-    }
-    
-    [self.weekDayTitleView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    CGFloat width = self.frame.size.width/7;
-    CGFloat centerY = self.weekDayTitleView.frame.size.height / 2;
-   
-    NSArray *titles = @[@"S", @"M", @"T", @"W", @"T", @"F", @"S"];
-    for (int i = 0; i < titles.count; i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.attributedText = [[NSAttributedString alloc] initWithString:titles[i] attributes:self.weekDayTitleAttributes];
-        label.center = CGPointMake(i * width + width / 2, centerY);
-        [self.weekDayTitleView addSubview:label];
+    if (_hasSetupWeekDayTitles == NO) {
+        if (self.weekdayTitleViewBackgroundColor) {
+            self.weekDayTitleView.backgroundColor = self.weekdayTitleViewBackgroundColor;
+        }
+        
+        [self.weekDayTitleView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        CGFloat width = self.frame.size.width/7;
+        CGFloat centerY = self.weekDayTitleView.frame.size.height / 2;
+        
+        NSArray *titles = @[@"S", @"M", @"T", @"W", @"T", @"F", @"S"];
+        for (int i = 0; i < titles.count; i++) {
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.attributedText = [[NSAttributedString alloc] initWithString:titles[i] attributes:self.weekDayTitleAttributes];
+            label.center = CGPointMake(i * width + width / 2, centerY);
+            [self.weekDayTitleView addSubview:label];
+        }
+        
+        _hasSetupWeekDayTitles = YES;
     }
 }
 
