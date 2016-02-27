@@ -24,6 +24,7 @@
 		CE1F44EC1C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1F44D41C70FC620047511D /* RKAgendaTableViewSectionHeaderView.xib */; };
 		CE1F44EF1C70FC700047511D /* RKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1F44EE1C70FC700047511D /* RKAppDelegate.m */; };
 		CE2882341C81B68B00D43628 /* RKCalendarMonthCoverScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2882331C81B68B00D43628 /* RKCalendarMonthCoverScrollView.m */; };
+		CE6D6C361C82388000E1B84A /* EventsDummyData.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6D6C351C82388000E1B84A /* EventsDummyData.plist */; };
 		CEB306BD1C7473EA009C56C0 /* RKCalendarPermissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB306BC1C7473EA009C56C0 /* RKCalendarPermissionView.m */; };
 		CEB306BF1C7473F2009C56C0 /* RKCalendarPermissionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB306BE1C7473F2009C56C0 /* RKCalendarPermissionView.xib */; };
 		CEDC01571C7D02F40026727D /* RKCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDC01561C7D02F40026727D /* RKCalendarView.m */; };
@@ -61,6 +62,7 @@
 		CE1F44EE1C70FC700047511D /* RKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKAppDelegate.m; sourceTree = "<group>"; };
 		CE2882321C81B68B00D43628 /* RKCalendarMonthCoverScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCalendarMonthCoverScrollView.h; sourceTree = "<group>"; };
 		CE2882331C81B68B00D43628 /* RKCalendarMonthCoverScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCalendarMonthCoverScrollView.m; sourceTree = "<group>"; };
+		CE6D6C351C82388000E1B84A /* EventsDummyData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EventsDummyData.plist; sourceTree = "<group>"; };
 		CEB306BB1C7473EA009C56C0 /* RKCalendarPermissionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCalendarPermissionView.h; sourceTree = "<group>"; };
 		CEB306BC1C7473EA009C56C0 /* RKCalendarPermissionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCalendarPermissionView.m; sourceTree = "<group>"; };
 		CEB306BE1C7473F2009C56C0 /* RKCalendarPermissionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RKCalendarPermissionView.xib; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		CE1F448C1C70FBB90047511D /* CalendarApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE6D6C341C82386700E1B84A /* Data */,
 				CE1932DA1C73B72300B4DFDC /* Constants */,
 				CE1F44A51C70FC620047511D /* Category */,
 				CE1F44AA1C70FC620047511D /* Cells */,
@@ -194,6 +197,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CE6D6C341C82386700E1B84A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CE6D6C351C82388000E1B84A /* EventsDummyData.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,6 +270,7 @@
 				CEDC01591C7D03D00026727D /* RKCalendarView.xib in Resources */,
 				CE0B29361C7DAE960063DB63 /* RKCalendarCollectionViewCell.xib in Resources */,
 				CE1F44981C70FBB90047511D /* Main.storyboard in Resources */,
+				CE6D6C361C82388000E1B84A /* EventsDummyData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

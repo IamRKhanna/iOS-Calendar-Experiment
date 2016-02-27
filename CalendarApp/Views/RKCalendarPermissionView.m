@@ -9,10 +9,10 @@
 #import "RKCalendarPermissionView.h"
 
 @interface RKCalendarPermissionView()
+
 // Outlets
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel *messageLabel;
-@property (nonatomic, strong) IBOutlet UIButton *openSettingsButton;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *messageLabelBottomSpaceToSettingsButtonConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *messageLabelBottomSpaceToSuperViewConstraint;
 
 // Action
 - (IBAction)openSettingsButtonTapped:(id)sender;
@@ -103,4 +103,11 @@
     [[UIApplication sharedApplication] openURL:settingsURL];
 }
 
+#pragma mark - Helper
+- (void)setOpenSettingsButtonHidden:(BOOL)isHidden {
+    [self.openSettingsButton setHidden:isHidden];
+    [self.messageLabelBottomSpaceToSuperViewConstraint setActive:isHidden];
+    [self.messageLabelBottomSpaceToSettingsButtonConstraint setActive:!isHidden];
+    [self layoutIfNeeded];
+}
 @end

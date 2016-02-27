@@ -31,6 +31,11 @@ extern NSString * const RKCalendarDataManagerAccessPermissionDidChangeNotificati
 @property (nonatomic, assign) BOOL isEventsDataReady;
 
 /**
+ *  BOOL to depict if events data is dummy or not
+ */
+@property (nonatomic, assign) BOOL isDummyEventsData;
+
+/**
  *  BOOL to check if access to calendars is granted or not
  */
 @property (nonatomic, assign) BOOL accessToCalendarGranted;

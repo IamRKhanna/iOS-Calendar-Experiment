@@ -166,21 +166,44 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 
     dispatch_async(dispatch_get_main_queue(), ^{
         if (hasCalendarPermission) {
-            // Enable Agenda table view
-            self.agendaTableView.alpha = 1.0;
-            [self.agendaTableView setUserInteractionEnabled:YES];
-            
-            // Hide permission view
-            self.permissionView.hidden = YES;
+            if (self.calendarManager.isDummyEventsData) {
+                // Enable Agenda table view
+                self.agendaTableView.alpha = 0.3;
+                [self.agendaTableView setUserInteractionEnabled:NO];
+                
+                // Show permission view in the context of dummy data information
+                [self.permissionView setOpenSettingsButtonHidden:YES];
+                
+                self.permissionView.titleLabel.text = @"No events found";
+                self.permissionView.messageLabel.text = @"Why don't you cal up a couple of mates and create an event to meet up.";
+                
+                // Set permission view frame and show it
+                self.permissionView.frame = CGRectMake(self.agendaTableView.frame.origin.x + 40.0f, self.agendaTableView.frame.origin.y + self.agendaTableView.frame.size.height/2 - self.permissionView.frame.size.height/2, self.agendaTableView.frame.size.width - 80.0f, 100.0f);
+                self.permissionView.layer.borderWidth = 0.5f;
+                self.permissionView.layer.borderColor = [UIColor blackColor].CGColor;
+                self.permissionView.layer.cornerRadius = 5.0f;
+                self.permissionView.hidden = NO;
+            }
+            else {
+                // Enable Agenda table view
+                self.agendaTableView.alpha = 1.0;
+                [self.agendaTableView setUserInteractionEnabled:YES];
+
+                // Hide permission view
+                self.permissionView.hidden = YES;
+            }
         }
         else {
             // Tone down the alpha for agenda table view & disable interaction
-            self.agendaTableView.alpha = 0.3;
+            self.agendaTableView.alpha = 0.5;
             [self.agendaTableView setUserInteractionEnabled:NO];
             
             
             // Set permission view frame and show it
+            [self.permissionView setOpenSettingsButtonHidden:NO];
             self.permissionView.frame = CGRectMake(self.agendaTableView.frame.origin.x + 20.0f, self.agendaTableView.frame.origin.y + self.agendaTableView.frame.size.height/2 - self.permissionView.frame.size.height/2, self.agendaTableView.frame.size.width - 40.0f, 150.0f);
+            self.permissionView.layer.borderWidth = 0.0f;
+            self.permissionView.layer.cornerRadius = 5.0f;
             self.permissionView.hidden = NO;
         }
     });

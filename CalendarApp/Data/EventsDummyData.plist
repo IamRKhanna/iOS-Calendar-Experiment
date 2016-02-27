@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Title</key>
+		<string>Submitted assignment for Microsoft iOS Dev job opening</string>
+		<key>Location</key>
+		<string>Mumbai, India</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Feedback received from Joey Dong</string>
+		<key>Location</key>
+		<string>Mumbai, India</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Submit assignment with feedback points integrated </string>
+		<key>Location</key>
+		<string>Mumbai, India</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Received Job offer from Microsoft</string>
+		<key>Location</key>
+		<string>Mumbai, India</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Joined Outlooks team at Microsoft</string>
+		<key>Location</key>
+		<string>Pune, India</string>
+	</dict>
+</array>
+</plist>

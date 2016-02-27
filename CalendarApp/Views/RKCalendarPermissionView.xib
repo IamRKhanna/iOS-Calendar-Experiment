@@ -14,13 +14,13 @@
                     <rect key="frame" x="0.0" y="24" width="512" height="115"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need Calendar Permission" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cji-JG-LMd">
-                            <rect key="frame" x="113" y="0.0" width="287" height="30"/>
+                            <rect key="frame" x="113" y="0.0" width="287" height="29.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
                             <color key="textColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In iPhone settings, tap CaendarApp and turn on Calendar" textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-C5-My5">
-                            <rect key="frame" x="64" y="37" width="385" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In iPhone settings, tap CaendarApp and turn on Calendar" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONI-C5-My5">
+                            <rect key="frame" x="64" y="36.5" width="385" height="17.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -41,6 +41,7 @@
                         <constraint firstAttribute="centerX" secondItem="cji-JG-LMd" secondAttribute="centerX" id="Hxh-AC-udW"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zhd-oF-32I" secondAttribute="trailing" constant="15" id="OQm-6B-f2t"/>
                         <constraint firstItem="cji-JG-LMd" firstAttribute="top" secondItem="ih8-lr-m8W" secondAttribute="top" id="RTY-6z-fGf"/>
+                        <constraint firstAttribute="bottom" secondItem="ONI-C5-My5" secondAttribute="bottom" priority="750" id="c58-Ql-LAV"/>
                         <constraint firstItem="zhd-oF-32I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ih8-lr-m8W" secondAttribute="leading" constant="15" id="cvb-Qe-zhE"/>
                         <constraint firstAttribute="centerX" secondItem="zhd-oF-32I" secondAttribute="centerX" id="mDm-P8-jBa"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cji-JG-LMd" secondAttribute="trailing" constant="15" id="nYs-kX-gzt"/>
@@ -68,10 +69,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="messageLabel" destination="ONI-C5-My5" id="miD-Hz-vgK"/>
+                <outlet property="messageLabelBottomSpaceToSettingsButtonConstraint" destination="qko-er-Wb9" id="Vta-hP-MWQ"/>
+                <outlet property="messageLabelBottomSpaceToSuperViewConstraint" destination="c58-Ql-LAV" id="5RD-6L-QdQ"/>
                 <outlet property="openSettingsButton" destination="zhd-oF-32I" id="ZSh-4Z-PEb"/>
                 <outlet property="titleLabel" destination="cji-JG-LMd" id="GzD-Qc-dAb"/>
             </connections>
-            <point key="canvasLocation" x="314" y="526.5"/>
+            <point key="canvasLocation" x="109" y="512.5"/>
         </view>
     </objects>
 </document>

@@ -49,6 +49,17 @@
     return newDate;
 }
 
++ (NSDate *)dateByAddingHours:(NSInteger)hours toDate:(NSDate *)inputDate {
+    // Use the user's current calendar and time zone
+    NSCalendar *calendar = [RKCalendarDataHelper calendar];
+    
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setHour:hours];
+    
+    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:inputDate options:0];
+    return newDate;
+}
+
 + (NSString *)stringForTimeDifferenceBetweenStartDate:(NSDate *)startDate andEndDate:(NSDate *)endDate {
     // Use the user's current calendar and time zone
     NSCalendar *calendar = [RKCalendarDataHelper calendar];

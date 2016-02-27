@@ -10,4 +10,11 @@
 
 @interface RKCalendarPermissionView : UIView
 
+// Outlets
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *messageLabel;
+@property (nonatomic, strong) IBOutlet UIButton *openSettingsButton;
+
+- (void)setOpenSettingsButtonHidden:(BOOL)isHidden;
+
 @end

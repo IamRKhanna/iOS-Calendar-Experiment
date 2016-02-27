@@ -36,7 +36,7 @@
 
 
 /**
- *  Method to get a date by adding years, months, to a given date
+ *  Method to get a date by adding years, months & days to a given date
  *
  *  @param numberOfYears Number of years to be added
  *  @param months        Number of months to be added
@@ -45,6 +45,16 @@
  *  @return New NSDate
  */
 + (NSDate *)dateByAddingYears:(NSInteger)years months:(NSInteger)months days:(NSInteger)days toDate:(NSDate *)inputDate;
+
+/**
+ *  Method to get a date by adding hours to a given date
+ *
+ *  @param hours     Number of hours to be added
+ *  @param inputDate Date to which hours are to be added
+ *
+ *  @return New NSDate
+ */
++ (NSDate *)dateByAddingHours:(NSInteger)hours toDate:(NSDate *)inputDate;
 
 /**
  *  Method to fetch a string representing time difference between two dates in the form of "1y 1M 1d 1h 1m"

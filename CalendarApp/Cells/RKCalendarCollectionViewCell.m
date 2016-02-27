@@ -229,7 +229,7 @@
     }
     
     // Agenda indicator view
-    if ([[RKCalendarDataManager sharedInstance] doesEventExistForDate:self.date] && day != 1) {
+    if ([[RKCalendarDataManager sharedInstance] doesEventExistForDate:self.date] && day != 1 && [RKCalendarDataManager sharedInstance].isDummyEventsData == NO) {
         self.agendaIndicatorView.hidden = NO;
         if (isToday) {
             self.agendaIndicatorView.backgroundColor = self.todayAgendaIndicatorColor;
@@ -290,8 +290,7 @@
     if (shouldDisplace) {
         self.monthLabelTopSpaceToContainerConstraint.constant = 9.0f;
         self.dayLabelBottomSpaceToContainerConstraint.constant = 5.0f;
-    }
-    else {
+    } else {
         self.monthLabelTopSpaceToContainerConstraint.constant = 2.0f;
     }
     

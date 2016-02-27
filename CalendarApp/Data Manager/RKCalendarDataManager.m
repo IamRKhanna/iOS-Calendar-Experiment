@@ -136,6 +136,17 @@ static  RKCalendarDataManager *sharedInstance = nil;
     
     // Get list of all events first
     NSArray<EKEvent *> *allEvents = [self fetchEventsFromEventStore];
+    if (allEvents) {
+        if (allEvents.count <= 0) {
+            [self fetchDummyEventData];
+            self.isDummyEventsData = YES;
+        } else {
+            self.isDummyEventsData = NO;
+        }
+    } else {
+        allEvents = [self fetchDummyEventData];
+        self.isDummyEventsData = YES;
+    }
     
     // Set the eventsDictionary property
     self.eventsDictionary = [self dictionaryWithDayWiseEventsForEventLits:allEvents];
@@ -160,6 +171,40 @@ static  RKCalendarDataManager *sharedInstance = nil;
     NSPredicate *searchPredicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil];
     
     return [self.eventStore eventsMatchingPredicate:searchPredicate];
+}
+
+- (NSArray<EKEvent *> *)fetchDummyEventData {
+    NSArray *dummyEventsInfo;
+    NSBundle *appBundle = [NSBundle bundleForClass:[self class]];
+    NSString *resourcePath = [appBundle pathForResource:@"EventsDummyData" ofType:@"plist"];
+    if (resourcePath)  {
+        dummyEventsInfo = [[NSArray alloc] initWithContentsOfFile:resourcePath];
+    }
+    
+    if (dummyEventsInfo && dummyEventsInfo.count > 0) {
+        NSMutableArray *eventsArray = [NSMutableArray arrayWithCapacity:dummyEventsInfo.count];
+        __block NSDate *startDate = [RKCalendarDataHelper dateByAddingYears:0 months:0 days:-20 toDate:[NSDate date]];
+        [dummyEventsInfo enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+            EKEvent *event = [EKEvent eventWithEventStore:self.eventStore];
+            event.startDate = startDate;
+            event.endDate = [RKCalendarDataHelper dateByAddingHours:2 toDate:startDate];
+            event.title = [obj valueForKey:@"Title"];
+            event.location = [obj valueForKey:@"Location"];
+            
+            [eventsArray addObject:event];
+            startDate = [RKCalendarDataHelper dateByAddingYears:0 months:0 days:10 toDate:startDate];
+        }];
+        
+        return eventsArray;
+    }
+
+    EKEvent *event = [EKEvent eventWithEventStore:self.eventStore];
+    event.startDate = [NSDate date];
+    event.endDate = [RKCalendarDataHelper dateByAddingHours:2 toDate:[NSDate date]];
+    event.title = @"Some random event";
+    event.location = @"Some secret location";
+    
+    return @[event];
 }
 
 
