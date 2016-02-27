@@ -1,24 +1,26 @@
 //
-//  GLCalendarMonthCoverView.m
-//  GLPeriodCalendar
+//  RKCalendarMonthCoverScrollView.m
+//  CalendarApp
 //
-//  Created by ltebean on 15-4-17.
-//  Copyright (c) 2015 glow. All rights reserved.
+//  Created by Rahul Khanna on 2/27/16.
+//  Copyright © 2016 Rahul Khanna. All rights reserved.
 //
 
-#import "GLCalendarMonthCoverView.h"
-#import "GLDateUtils.h"
+#import "RKCalendarMonthCoverScrollView.h"
+#import "RKCalendarDataHelper.h"
 
-@interface GLCalendarMonthCoverView()
+@interface RKCalendarMonthCoverScrollView()
+
 @property (nonatomic, copy) NSDate *firstDate;
 @property (nonatomic, copy) NSDate *lastDate;
+
 @end
 
-@implementation GLCalendarMonthCoverView
+@implementation RKCalendarMonthCoverScrollView
 
 - (void)updateWithFirstDate:(NSDate *)firstDate lastDate:(NSDate *)lastDate calendar:(NSCalendar *)calendar rowHeight:(CGFloat)rowHeight
 {
-    if ([GLDateUtils date:firstDate isSameDayAsDate:self.firstDate] && [GLDateUtils date:lastDate isSameDayAsDate:self.lastDate]) {
+    if ([RKCalendarDataHelper isdate:firstDate sameAsDate:self.firstDate] && [RKCalendarDataHelper isdate:lastDate sameAsDate:self.lastDate]) {
         return;
     }
     self.firstDate = firstDate;
@@ -28,18 +30,17 @@
     
     NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
     monthFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    monthFormatter.dateFormat = @"MMMM y";
-
+    
     NSDateComponents *today = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
     
-    for (NSDate *date = [GLDateUtils monthFirstDate:firstDate]; [date compare:lastDate] < 0; date = [GLDateUtils dateByAddingMonths:1 toDate:date]) {
-        NSInteger dayDiff = [GLDateUtils daysBetween:firstDate and:date];
+    for (NSDate *date = [RKCalendarDataHelper monthFirstDate:firstDate]; [date compare:lastDate] < 0; date = [RKCalendarDataHelper dateByAddingYears:0 months:1 days:0 toDate:date]) {
+        NSInteger dayDiff = [RKCalendarDataHelper daysBetweenDate:firstDate andDate:date];
         if (dayDiff < 0) {
             continue;
         }
         
         NSDateComponents *components = [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
-
+        
         UILabel *monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), rowHeight * 3)];
         monthLabel.backgroundColor = [UIColor clearColor];
         monthLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -49,17 +50,18 @@
         if (today.year == components.year) {
             monthFormatter.dateFormat = @"MMMM";
             labelText = [monthFormatter stringFromDate:date];
-        }
-        else {
+        } else {
+            monthFormatter.dateFormat = @"MMMM y";
             labelText = [monthFormatter stringFromDate:date];
         }
         
         monthLabel.attributedText = [[NSAttributedString alloc] initWithString:labelText attributes:self.textAttributes];;
         monthLabel.center = CGPointMake(CGRectGetMidX(self.bounds), ceilf(rowHeight * (dayDiff / 7 + 2))+rowHeight/2);
         monthLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-
+        
         [self addSubview:monthLabel];
     }
 }
+
 
 @end

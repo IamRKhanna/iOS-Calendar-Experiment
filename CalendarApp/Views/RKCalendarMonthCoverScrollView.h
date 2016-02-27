@@ -1,14 +1,17 @@
 //
-//  GLCalendarMonthCoverView.h
-//  GLPeriodCalendar
+//  RKCalendarMonthCoverScrollView.h
+//  CalendarApp
 //
-//  Created by ltebean on 15-4-17.
-//  Copyright (c) 2015 glow. All rights reserved.
+//  Created by Rahul Khanna on 2/27/16.
+//  Copyright © 2016 Rahul Khanna. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface GLCalendarMonthCoverView : UIScrollView
+@interface RKCalendarMonthCoverScrollView : UIScrollView
+
 @property (nonatomic, strong) NSDictionary *textAttributes;
+
 - (void)updateWithFirstDate:(NSDate *)firstDate lastDate:(NSDate *)lastDate calendar:(NSCalendar *)calendar rowHeight:(CGFloat)rowHeight;
+
 @end

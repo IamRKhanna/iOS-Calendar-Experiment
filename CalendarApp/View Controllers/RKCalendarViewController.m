@@ -15,8 +15,7 @@
 #import "RKCalendarPermissionView.h"
 
 // Calendar View File Imports
-#import "GLCalendarView.h"
-#import "GLCalendarDayCell.h"
+#import "RKCalendarView.h"
 
 // Agenda Table View File imports
 #import "RKAgendaTableViewCell.h"
@@ -44,7 +43,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     RKAgendaTableViewScrollDirectionDown
 };
 
-@interface RKCalendarViewController() <UITableViewDataSource, UITableViewDelegate, GLCalendarViewDelegate>
+@interface RKCalendarViewController() <UITableViewDataSource, UITableViewDelegate, RKCalendarViewDelegate>
 
 // Helper Variables
 @property (nonatomic, strong) RKCalendarDataManager *calendarManager;
@@ -61,7 +60,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 @property (nonatomic, assign) RKAgendaTableViewScrollDirection agendTableViewScrollDirection;
 
 // Calendar View
-@property (nonatomic, strong) IBOutlet GLCalendarView *calendarView;
+@property (nonatomic, strong) IBOutlet RKCalendarView *calendarView;
 
 
 // Today button
@@ -87,7 +86,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     // Table view initialization
     [self setupAgendaTableView];
     
-    // Calendar view initialization
+    // Anothe calendar view initialization
     [self setupCalendarView];
     
     // Today button initialization
@@ -212,60 +211,17 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 
 #pragma mark Calendar View Setup
 - (void)setupCalendarView {
-    self.calendarView.firstDate = [self.calendarManager startDateForCalendarView];
-    self.calendarView.lastDate = [self.calendarManager endDateForCalendarView];
-    self.calendarView.scrollDecelartionRate = UIScrollViewDecelerationRateNormal;
     self.calendarView.delegate = self;
     
-    // Create calendar range for today
-    GLCalendarDateRange *todayRange = [self calendarRangeForDate:[NSDate date]];
-    self.calendarView.ranges = [@[todayRange] mutableCopy];
+    self.calendarView.startDate = [self.calendarManager startDateForCalendarView];
+    self.calendarView.endDate = [self.calendarManager endDateForCalendarView];
     
-    // Attributes for calendar view
-    [GLCalendarView appearance].rowHeight = RK_CALENDAR_VIEW_ROW_HEIGHT;
-    [GLCalendarView appearance].padding = RK_CALENDAR_VIEW_PADDING;
-    [GLCalendarView appearance].weekdayTitleViewBackgroundColor = [UIColor whiteColor];
-    [GLCalendarView appearance].monthCoverAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18]};
-    
-    // Attributes for calendar view cell
-    [GLCalendarDayCell appearance].dayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
-    [GLCalendarDayCell appearance].todayLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
-    [GLCalendarDayCell appearance].todayBackgroundColor = [UIColor colorFromHexString:@"#0073C6"];
-    [GLCalendarDayCell appearance].monthLabelAttributes = @{NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
-    [GLCalendarDayCell appearance].yearLabelAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:7], NSForegroundColorAttributeName:[UIColor colorFromHexString:@"#9B9B9B"]};
-    [GLCalendarDayCell appearance].agendaIndicatorColor = [UIColor colorFromHexString:@"#E6E6E6"];
-    [GLCalendarDayCell appearance].todayAgendaIndicatorColor = [UIColor blueColor];
-    [GLCalendarDayCell appearance].evenMonthBackgroundColor = [UIColor whiteColor];
-    [GLCalendarDayCell appearance].oddMonthBackgroundColor = [UIColor colorFromHexString:@"#F8F8F8"];
-    [GLCalendarDayCell appearance].borderColor = [UIColor colorFromHexString:@"#E3E3E3"];
-}
-
-- (GLCalendarDateRange *)calendarRangeForDate:(NSDate *)date {
-    
-    // Since we don't need ranges with multiple selections, begin and end date can be the same
-    GLCalendarDateRange *range = [GLCalendarDateRange rangeWithBeginDate:date endDate:date];
-    range.editable = NO;
-    range.backgroundColor = [UIColor colorFromHexString:@"#0073C6"];
-    
-    return range;
+    [RKCalendarView appearance].rowHeight = RK_CALENDAR_VIEW_ROW_HEIGHT;
 }
 
 #pragma mark Calendar View Delegate
-- (BOOL)calenderView:(GLCalendarView *)calendarView canAddRangeWithBeginDate:(NSDate *)beginDate {
-    return YES;
-}
 
-- (GLCalendarDateRange *)calenderView:(GLCalendarView *)calendarView rangeToAddWithBeginDate:(NSDate *)beginDate {
-    // Our range is only one date long so begin and end date shall be same
-    GLCalendarDateRange *range = [self calendarRangeForDate:beginDate];
-
-    // This delegate callback also works as item selection for the collection view. So,
-    [self didSelectDateOnCalendarview:beginDate];
-    
-    return range;
-}
-
-- (void)didSelectDateOnCalendarview:(NSDate *)date {
+-(void)calendarView:(RKCalendarView *)calendarView didSelectDate:(NSDate *)date {
     // Scroll agenda view to nearest event on the selected date
     [self scrollAgendaTableViewToDate:date];
     
@@ -273,7 +229,7 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
     [self updateMonthLabelForMenuViewForDate:date];
 }
 
-- (void)calenderViewWillBeginDragging:(GLCalendarView *)calendarView {
+- (void)calenderViewWillBeginDragging:(RKCalendarView *)calendarView {
     [UIView animateWithDuration:0.3f
                           delay:0.0f
          usingSpringWithDamping:1.0f
@@ -488,10 +444,6 @@ typedef NS_ENUM(NSUInteger, RKAgendaTableViewScrollDirection) {
 }
 
 - (void)scrollCalendarViewToDate:(NSDate *)date {
-    // Create a date range for this date and add set it to range for calendar view
-    GLCalendarDateRange *dateRange = [self calendarRangeForDate:date];
-    [self.calendarView addRange:dateRange];
-
     // Update month year label
     [self updateMonthLabelForMenuViewForDate:date];
     
