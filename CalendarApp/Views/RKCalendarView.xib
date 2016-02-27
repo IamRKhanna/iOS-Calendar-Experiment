@@ -33,15 +33,15 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <scrollView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7re-0i-g77" customClass="RKCalendarMonthCoverScrollView">
+                    <rect key="frame" x="0.0" y="28" width="600" height="572"/>
+                </scrollView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="VOS-Zt-Nb0">
                     <rect key="frame" x="0.0" y="28" width="600" height="3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="Ujp-j5-jdM"/>
                     </constraints>
                 </imageView>
-                <scrollView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7re-0i-g77" customClass="RKCalendarMonthCoverScrollView">
-                    <rect key="frame" x="0.0" y="28" width="600" height="572"/>
-                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

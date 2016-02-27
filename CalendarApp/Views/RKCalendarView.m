@@ -344,7 +344,7 @@
 - (void)reload {
     self.monthCoverScrollView.textAttributes = self.monthCoverLabelAttributes;
     [self.monthCoverScrollView updateWithFirstDate:self.calendarViewStartDate
-                                          lastDate:self.calendarViewEndDate
+                                          lastDate:self.endDate
                                           calendar:[RKCalendarDataHelper calendar]
                                          rowHeight:self.rowHeight];
     
