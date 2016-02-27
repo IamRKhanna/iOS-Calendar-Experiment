@@ -7,6 +7,7 @@
 //
 
 #import "RKAppDelegate.h"
+#import "RKCalendarViewController.h"
 
 @interface RKAppDelegate ()
 
@@ -17,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    RKCalendarViewController *rootViewController = [[RKCalendarViewController alloc] initWithNibName:NSStringFromClass([RKCalendarViewController class]) bundle:[NSBundle mainBundle]];
+    self.window.rootViewController = rootViewController;
+    
     return YES;
 }
 
