@@ -12,6 +12,7 @@
 
 +  (NSString *)reuseIdentifier;
 
+// Border & Background attributes
 @property (nonatomic, strong) UIColor *borderColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *evenMonthBackgroundColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *oddMonthBackgroundColor UI_APPEARANCE_SELECTOR;
@@ -29,8 +30,21 @@
 // Background view selector helper
 @property (nonatomic, assign) CGFloat backgroundCoverHeightPadding UI_APPEARANCE_SELECTOR;
 
+
+// Public methods
+/**
+ *  Use this method to set the date attribute when doing cellForItemAtIndexPath
+ *
+ *  @param date       Date object for the cell
+ *  @param isSelected BOOL flag to display UI based on whether the cell if selected or not
+ */
 - (void)setDate:(NSDate *)date isSelected:(BOOL)isSelected;
 
+/**
+ *  Method to update UI based on given selection state
+ *
+ *  @param isSelected BOOL flag that depicts the selection state of the cell
+ */
 - (void)updateDisplayForSelectedState:(BOOL)isSelected;
 
 @end

@@ -10,28 +10,7 @@
 #import "UIColor+HexString.h"
 #import "RKCalendarDataHelper.h"
 #import "RKCalendarDataManager.h"
-
-@interface BackgroundCoverView : UIView
-@property (nonatomic, assign) CGFloat heightPadding;
-@property (nonatomic, strong) UIColor *fillColor;
-@end
-
-@implementation BackgroundCoverView
-
--(void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
-    
-    CGFloat height = rect.size.height;
-    CGFloat width = rect.size.width;
-    height -= self.heightPadding;
-    
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((width-height)/2, self.heightPadding/2, height, height)];
-    [path closePath];
-    [self.fillColor setFill];
-    [path fill];
-}
-
-@end
+#import "BackgroundCoverView.h"
 
 @interface RKCalendarCollectionViewCell()
 
@@ -52,6 +31,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *topBorderViewHeightConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *bottomBorderViewHeightConstraint;
 
+// Date Modal for this cell
 @property (nonatomic, strong) NSDate *date;
 
 @end
